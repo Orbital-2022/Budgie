@@ -16,3 +16,21 @@ Given the limited budget per month, how we should break down the expenses wisely
 ## Aim
 
 We hope to create a web-based application that can help one to set budgets for various categories, keep expenses on track and analyse personal finance in a convenient and clear way.
+
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start` 
+Starts the development server.
+### `npm run build` 
+Bundles the app into static files for production.
+### `npm test` 
+Starts the test runner.
+### `npm run eject`
+Removes this tool and copies build dependencies, configuration files
+and scripts into the app directory. If you do this, you can’t go back!
+We suggest that you begin by typing:
+### `cd my-app`
+### `npm start`
