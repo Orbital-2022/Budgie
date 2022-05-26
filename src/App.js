@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { Signup } from "./components/login/Signup";
-import { Login } from "./components/login/Login";
-import { Dashboard } from "./components/login/Dashboard";
-import { AuthProvider } from './components/login/Auth';
-import { PrivateRoute } from './components/login/PrivateRoute';
+import { Signup } from "./components/Login/Signup";
+import { Login } from "./components/Login/login";
+import { Dashboard } from "./components/Dashboard/Dashboard";
+import { AuthProvider } from './components/Login/Auth';
+import { PrivateRoute } from './components/Login/PrivateRoute';
 
 function App() {
 
