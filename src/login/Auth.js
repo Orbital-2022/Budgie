@@ -1,5 +1,9 @@
-import { useState } from 'react'
-import { supabase } from '../config/supabaseClient'
+import { useState } from 'react';
+import { supabase } from '../config/supabaseClient';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import "../styles.css";
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)
@@ -21,29 +25,25 @@ export default function Auth() {
   }
 
   return (
-    <div className="row flex flex-center">
-      <div className="col-6 form-widget" aria-live="polite">
-        <h1 className="header">Budgie</h1>
+    <Grid className="LoginGrid">
+        <h1 className="header" id="loginHeader">Budgie</h1>
         <p className="description">Sign in via magic link with your email below</p>
         {loading ? (
           'Sending magic link...'
         ) : (
-          <form onSubmit={handleLogin}>
+          <form className= "LoginEmail" onSubmit={handleLogin}>
             <label htmlFor="email">Email</label>
-            <input
-              id="email"
+            <TextField 
+              id="outlined-basic"
               className="inputField"
               type="email"
               placeholder="Your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button className="button block" aria-live="polite">
-              Send magic link
-            </button>
+            <Button type="submit" className="button block" aria-live="polite" variant="contained">Send magic link</Button>
           </form>
         )}
-      </div>
-    </div>
+    </Grid>
   )
 }
