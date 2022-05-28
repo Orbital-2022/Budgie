@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import "../styles.css";
+import Logo from '../Logo.png';
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)
@@ -24,15 +25,21 @@ export default function Auth() {
     }
   }
 
+  
+
   return (
-    <Grid className="LoginGrid">
+    <>
+    <Grid className="LoginHeaderGrid">
+     <img  className= 'centrepic' src = {Logo} alt='Budgie Logo'/>
         <h1 className="header" id="loginHeader">Budgie</h1>
-        <p className="description">Sign in via magic link with your email below</p>
+        </Grid>
+        <Grid className="LoginTextGrid">
+        <p className="description">Sign in via magic link with your email!</p>
         {loading ? (
-          'Sending magic link...'
+          <p className='description'>Sending magic link...</p>
         ) : (
           <form className= "LoginEmail" onSubmit={handleLogin}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" id="loginlabel">Email</label>
             <TextField 
               id="outlined-basic"
               className="inputField"
@@ -41,9 +48,9 @@ export default function Auth() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Button type="submit" className="button block" aria-live="polite" variant="contained">Send magic link</Button>
+            <Button type="submit" color="success" className="submitbtn" aria-live="polite" variant="contained">Send magic link</Button>
           </form>
         )}
     </Grid>
-  )
+    </>)
 }

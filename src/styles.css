@@ -6,26 +6,61 @@
     padding: 0;
   }
 
+  /*to set the background colour of the page*/
   body{
     background-color: #41b3a3;
   }
 
+  .header{
+    font-size: 8rem;
+  }
+
+  /*the next 3 are for the Budgie logo and title*/
+  .LoginHeaderGrid{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(2, auto);
+    grid-row-gap: 2rem;
+    grid-column-gap: 2rem;
+  }
+  
   #loginHeader {
-  color: rgb(10, 69, 50);
-  padding: 10px;
-  text-align: center;
+  padding-top: 10rem;
+  color:aliceblue;
+  padding-bottom: 2rem;
+  text-align: left;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
-#BudgieLogo {
+.centrepic{
+  padding-top: 10rem;
+  padding-bottom: 2rem;
+  width: 261px;
+  height: 261x; 
+}
+
+/*This grid contains the other elements in the login page*/
+.LoginTextGrid{
+  padding-top: 0rem;
   display: grid;
   justify-content: center;
   align-content: center;
 }
 
-.LoginGrid{
-  display: grid;
-  justify-content: center;
-  align-content: center;
+.description{
+  padding-left: 4rem;
+  padding-top: 1rem;
+  align-items: center;
+  font-style: italic;
+  font-size: x-large;
+  color:aliceblue;
+}
+
+/*the "email" text on the left of the textfield*/
+#loginlabel{
+  font-size: xx-large;
+  color:aliceblue;
 }
 
 form .inputField{
@@ -36,5 +71,14 @@ form .inputField{
 }
 
 .LoginEmail{
+  display:flex;
   margin: 0 1rem;
+  padding-right: -5rem;
 }
+.submitbtn{
+  margin: 0 1rem;
+  padding-left: -5rem;
+  background-color:antiquewhite;
+  color:#41b3a3;
+}
+
