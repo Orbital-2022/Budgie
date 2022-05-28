@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import SimplePaper from '../components/SimplePaper';
+import "../styles.css";
 
 const Account = ({ session }) => {
   const [loading, setLoading] = useState(true);
@@ -71,16 +75,20 @@ const Account = ({ session }) => {
   }
 
   return (
-    <div aria-live="polite">
+    /*<div aria-live="polite">*/
+    <div>
+     <SimplePaper>
+     <h1 id="ProfileTitle">My Profile</h1>
       {loading ? (
         'Saving ...'
       ) : (
-        <form onSubmit={updateProfile} className="form-widget">
-          <div>Email: {session.user.email}</div>
+        <form onSubmit={updateProfile} className="LoginTextGrid">
+          <div className="loginlabel2">Email: {session.user.email}</div>
           <div>
-            <label htmlFor="username">Name</label>
-            <input
+            <label className="loginlabel2"htmlFor="username">Name: </label>
+            <TextField
               id="username"
+              className="inputfield"
               type="text"
               value={username || ''}
               onChange={(e) => setUsername(e.target.value)}
@@ -88,16 +96,19 @@ const Account = ({ session }) => {
           </div>
           
           <div>
-            <button className="button block primary" disabled={loading}>
+            <Button type="submit" className="submitbtnmedium" disabled={loading}>
               Update profile
-            </button>
+            </Button>
           </div>
         </form>
       )}
-       <button type="button" className="button block" onClick={() => supabase.auth.signOut()}>
+      <box id="profilebottom">
+       <Button type="button" className="submitbtnmedium" onClick={() => supabase.auth.signOut()}>
         Sign Out
-      </button>
-      <button onClick={()=>navigate("/mainpage")}>Main Page</button>
+      </Button>
+      <Button onClick={()=>navigate("/mainpage")} className="submitbtnmedium">Main Page</Button>
+      </box>
+      </SimplePaper>
     </div>
   )
 }

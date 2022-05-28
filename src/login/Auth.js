@@ -39,7 +39,7 @@ export default function Auth() {
           <p className='description'>Sending magic link...</p>
         ) : (
           <form className= "LoginEmail" onSubmit={handleLogin}>
-            <label htmlFor="email" id="loginlabel">Email</label>
+            <label htmlFor="email" className="loginlabel">Email</label>
             <TextField 
               id="outlined-basic"
               className="inputField"
