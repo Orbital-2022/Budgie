@@ -1,10 +1,10 @@
 import React from "react";
 
-function StartPage() {
+function MainPage() {
     return (
         <div>
             <h1>Hello!</h1>
         </div>
     )
 }
-export default StartPage;
+export default MainPage;

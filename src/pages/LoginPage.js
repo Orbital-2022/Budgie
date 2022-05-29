@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import "../styles.css";
 
 
+
 export default function LoginPage() {
   const [session, setSession] = useState(null)
 
@@ -19,7 +20,7 @@ export default function LoginPage() {
 
   return (
     <Grid id = "BudgieLogo">
-      {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+      {!session ? <Auth /> : <Account key={session.user.id} session={session}/>}
     </Grid>
   )
 }

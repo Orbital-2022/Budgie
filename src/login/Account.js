@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import Avatar  from "./Avatar";
+import Logo from '../Logo.png';
 
 const Account = ({ session }) => {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
 
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Account = ({ session }) => {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url`)
+        .select(`username, avatar_url`)
         .eq('id', user.id)
         .single()
 
@@ -31,7 +32,6 @@ const Account = ({ session }) => {
 
       if (data) {
         setUsername(data.username)
-        setWebsite(data.website)
         setAvatarUrl(data.avatar_url)
       }
     } catch (error) {
@@ -51,7 +51,6 @@ const Account = ({ session }) => {
       const updates = {
         id: user.id,
         username,
-        website,
         avatar_url,
         updated_at: new Date(),
       }
@@ -75,6 +74,16 @@ const Account = ({ session }) => {
       {loading ? (
         'Saving ...'
       ) : (
+        <div>
+          <img  className= 'centrepic' src = {Logo} alt='Budgie Logo'/>
+          <h1 className="header" id="loginHeader">Budgie</h1>
+          <Avatar
+            url={avatar_url}
+            size={150}
+           onUpload={(url) => { setAvatarUrl(url)
+            updateProfile({ username, avatar_url: url })
+          }}
+          />
         <form onSubmit={updateProfile} className="form-widget">
           <div>Email: {session.user.email}</div>
           <div>
@@ -93,12 +102,14 @@ const Account = ({ session }) => {
             </button>
           </div>
         </form>
+        </div>
       )}
        <button type="button" className="button block" onClick={() => supabase.auth.signOut()}>
         Sign Out
       </button>
       <button onClick={()=>navigate("/mainpage")}>Main Page</button>
     </div>
+ 
   )
 }
 
