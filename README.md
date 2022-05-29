@@ -2,7 +2,7 @@
 NUS Orbital 2022 Team 5051
 
 ### Deployed link 
-[Budgie](preeminent-dragon-b4ace7.netlify.app)
+preeminent-dragon-b4ace7.netlify.app
   
 ## Motivation
 As we began our tertiary education, the adult problem of managing personal finance became increasingly troublesome in daily life. Given the limited budget per month, how we should break down the expenses wisely and how we can track our daily expenses have become the biggest problems that we face every day. 
