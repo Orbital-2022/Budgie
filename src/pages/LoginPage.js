@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../config/supabaseClient';
 import Auth from '../login/Auth';
-import Account from '../login/Account';
+//import Account from '../login/Account';
 import Grid from '@mui/material/Grid';
 import "../styles.css";
-
+import MainPage from "./MainPage";
 
 
 export default function LoginPage() {
@@ -20,7 +20,7 @@ export default function LoginPage() {
 
   return (
     <Grid id = "BudgieLogo">
-      {!session ? <Auth /> : <Account key={session.user.id} session={session}/>}
+      {!session ? <Auth /> : <MainPage key={session.user.id} session={session}/>}
     </Grid>
   )
 }
