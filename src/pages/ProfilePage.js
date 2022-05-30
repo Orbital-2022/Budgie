@@ -4,6 +4,9 @@ import { supabase } from '../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import Avatar  from "../login/Avatar";
 import { Grid } from '@mui/material';
+import { Button } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import SimplePaper from '../components/SimplePaper';
 //import Logo from '../Logo.png';
 
 const Account = ({  }) => {
@@ -74,52 +77,50 @@ const Account = ({  }) => {
     navigate("/");
    };
 
-  return (
-    <div aria-live="polite">
-      {loading ? (
-        'Saving ...'
-      ) : (
-        <Grid 
-        alignItems="center"
-        justifyContent="center"
-        >
-          <h1 className="header" id="Header">Profile</h1>
+    return (
+      /*<div aria-live="polite">*/
+      <div>
           <Avatar
-            url={avatar_url}
-            size={150}
-           onUpload={(url) => { setAvatarUrl(url)
-            updateProfile({ username, avatar_url: url })
-          }}
-          />
-        <form onSubmit={updateProfile} className="form-widget">
-        
-          <div>
-            <label htmlFor="username">Name</label>
-            <input
-              id="username"
-              type="text"
-              value={username || ''}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          
-          <div>
-            <button className="button block primary" disabled={loading}>
-              Update profile
-            </button>
-          </div>
-        </form>
-        </Grid>
-      )}
-       <button type="button" className="button block" onClick={logout }>
-        Sign Out
-      </button>
-      <button onClick={()=>navigate("/mainpage")}>Main Page</button>
-    </div>
- 
-  )
+          url={avatar_url}
+          size={200}
+          onUpload={(url) => { setAvatarUrl(url)
+          updateProfile({ username, avatar_url: url })
+        }}
+        />
+    
+       <SimplePaper>
+       <h1 id="ProfileTitle">My Profile</h1>
+        {loading ? (
+          'Saving ...'
+        ) : (
+              
+          <form onSubmit={updateProfile} className="LoginTextGrid">
+            <div>
+              <label className="loginlabel2"htmlFor="username">Name: </label>
+              <TextField
+                id="username"
+                className="inputfield"
+                type="text"
+                value={username || ''}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            
+            <div>
+              <Button type="submit" className="submitbtnmedium" disabled={loading}>
+                Update profile
+              </Button>
+            </div>
+          </form>
+        )}
+        <box id="profilebottom">
+         <Button type="button" className="submitbtnmedium" onClick={() => logout}>
+          Sign Out
+        </Button>
+        <Button onClick={()=>navigate("/mainpage")} className="submitbtnmedium">Main Page</Button>
+        </box>
+        </SimplePaper>
+      </div>
+    )
 }
-
 export default Account;
-// img  className= 'centrepic' src = Logo alt='Budgie Logo'
-//div>Email: {session.user.email}</div>
