@@ -10,5 +10,3 @@ export default function SimplePaper(props) {
     </Paper>
   );
 }
-
-
