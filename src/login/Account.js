@@ -9,7 +9,7 @@ import "../styles.css";
 const Account = ({ session }) => {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
+  //const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
 
   const navigate = useNavigate();
@@ -25,7 +25,8 @@ const Account = ({ session }) => {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url`)
+        .select(`username, avatar_url`)
+        //website deleted
         .eq('id', user.id)
         .single()
 
@@ -35,7 +36,7 @@ const Account = ({ session }) => {
 
       if (data) {
         setUsername(data.username)
-        setWebsite(data.website)
+        //setWebsite(data.website)
         setAvatarUrl(data.avatar_url)
       }
     } catch (error) {
@@ -55,7 +56,7 @@ const Account = ({ session }) => {
       const updates = {
         id: user.id,
         username,
-        website,
+        //website,
         avatar_url,
         updated_at: new Date(),
       }
