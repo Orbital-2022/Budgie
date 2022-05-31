@@ -58,9 +58,14 @@
 }
 
 /*the "email" text on the left of the textfield*/
-#loginlabel{
+.loginlabel{
   font-size: xx-large;
   color:aliceblue;
+}
+.loginlabel2{
+  font-size: x-large;
+  color:black;
+  margin: 2rem auto;
 }
 
 form .inputField{
@@ -70,15 +75,30 @@ form .inputField{
   margin: 0 2rem;
 }
 
+/*LoginEmail is the form element*/
 .LoginEmail{
-  display:flex;
-  margin: 0 1rem;
+  display: flex;
+  margin: 1 1rem;
   padding-right: -5rem;
 }
 .submitbtn{
   margin: 0 1rem;
   padding-left: -5rem;
-  background-color:antiquewhite;
-  color:#41b3a3;
+  color:aliceblue;
 }
 
+.submitbtnmedium{
+  margin: 2rem auto;
+  color:aliceblue;
+  size: 10rem;
+}
+
+#ProfileTitle{
+  text-align: center;
+  font-size: medium;
+}
+
+#profilebottom{
+  align-items: center;
+  display: flex;
+}

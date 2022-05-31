@@ -5,7 +5,7 @@ import styles from "./SimplePaper.module.css";
 export default function SimplePaper(props) {
   const { children } = props;
   return (
-    <Paper className={styles.box} elevation={3}>
+    <Paper className={styles.simplepaper} elevation={3}>
       {children}
     </Paper>
   );

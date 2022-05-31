@@ -1,4 +1,4 @@
-.box {
+.simplepaper {
     width: 25rem;
     height: 20rem;
     margin: 12rem auto;
@@ -7,3 +7,4 @@
     align-self: center;
     align-content: center;
   }
+
