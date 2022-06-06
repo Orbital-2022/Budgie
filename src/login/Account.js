@@ -3,7 +3,7 @@ import { supabase } from '../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import SimplePaper from '../components/SimplePaper';
+import SimplePaper from '../components/SimplePaper/SimplePaper';
 import "../styles.css";
 
 const Account = ({ session }) => {

@@ -1,0 +1,20 @@
+.sidenav {
+    width:10%;
+    height:100%;
+    z-index:100;
+    justify-content: space-evenly;
+    flex-direction: column;
+    display: flex;
+    position:fixed;
+    top:0;
+    left: 0;
+    padding: 35px;
+    background-color: #81d8cc;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+  }

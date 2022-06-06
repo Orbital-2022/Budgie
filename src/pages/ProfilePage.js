@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import Avatar  from "../login/Avatar";
-import { Grid } from '@mui/material';
+//import { Grid } from '@mui/material';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import SimplePaper from '../components/SimplePaper';
+import SimplePaper from '../components/SimplePaper/SimplePaper';
 //import Logo from '../Logo.png';
 
-const Account = ({  }) => {
+const Account=() => {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
@@ -18,8 +18,8 @@ const Account = ({  }) => {
   const user = supabase.auth.user();
   
   useEffect(() => {
-    getProfile()
-  }, [])
+    if(user) getProfile()
+  }, [user])
 
   const getProfile = async () => {
     try {

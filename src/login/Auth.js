@@ -25,8 +25,6 @@ export default function Auth() {
     }
   }
 
-  
-
   return (
     <>
     <Grid className="LoginHeaderGrid">
