@@ -7,7 +7,8 @@ function MainPage() {
     return (
         <div>
             <SideNav />
-            <Display />            
+            <Display />  
+
         </div>
     )
 }

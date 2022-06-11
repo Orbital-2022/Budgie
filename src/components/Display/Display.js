@@ -1,11 +1,10 @@
-import styles from './Display.module.css'
+import  CardsAndTable from "../CardsAndTable/CardsAndTable";
+
 
 export default function Display () {
     return (
-        <div className = {styles.Display}>
-            <p>
-                Hello!
-            </p>
+        <div >
+            <CardsAndTable />
         </div>
     )
 }

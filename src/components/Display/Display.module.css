@@ -1,10 +1,9 @@
 .display {
-    width:90%;
-    height:100%;
+    height: 100vh;
     z-index:100;
     display: flex;
-    position:fixed;
-    bottom :0;
-    right: 0;
-    background-color: #81d8cc;
+    background-color: #b4fde9;
+    padding: 25px;
+    position: fixed;
+    right: 0px; bottom: 0px;
 }

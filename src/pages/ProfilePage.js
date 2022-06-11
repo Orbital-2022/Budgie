@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import SimplePaper from '../components/SimplePaper/SimplePaper';
 //import Logo from '../Logo.png';
 
-const Account=() => {
+const Account=({ session }) => {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
@@ -17,9 +17,7 @@ const Account=() => {
   const navigate = useNavigate();
   const user = supabase.auth.user();
   
-  useEffect(() => {
-    if(user) getProfile()
-  }, [user])
+  useEffect(() => {getProfile()}, [{session}])
 
   const getProfile = async () => {
     try {
@@ -81,12 +79,13 @@ const Account=() => {
       /*<div aria-live="polite">*/
       <div>
           <Avatar
-          url={avatar_url}
-          size={200}
-          onUpload={(url) => { setAvatarUrl(url)
-          updateProfile({ username, avatar_url: url })
-        }}
-        />
+           url={avatar_url}
+           size={150}
+          onUpload={(url) => {
+        setAvatarUrl(url)
+        updateProfile({username, avatar_url: url })
+      }}
+    />
     
        <SimplePaper>
        <h1 id="ProfileTitle">My Profile</h1>

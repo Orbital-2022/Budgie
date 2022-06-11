@@ -9,11 +9,11 @@ export default function SideNav () {
   const [avatar_url, setAvatarUrl] = useState(null);
   const navigate = useNavigate();
   const user = supabase.auth.user();
-
   
   if (!user) {
     navigate("/")
   }
+
   async function handleLogout() {
     await supabase.auth.signOut();
       navigate("/");
@@ -21,8 +21,9 @@ export default function SideNav () {
 
   useEffect(() => {
     getProfile()
-  })
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+   
   const getProfile = async () => {
     try {  
       let { data, error, status } = await supabase
@@ -81,3 +82,4 @@ export default function SideNav () {
         </div>
     );
   }
+
