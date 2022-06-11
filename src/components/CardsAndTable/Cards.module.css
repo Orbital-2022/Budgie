@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+    position: fixed;
+    width: 80%;
+    right: 0;
+    padding-left: 25px;
+}
+
