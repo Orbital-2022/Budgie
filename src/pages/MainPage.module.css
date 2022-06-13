@@ -1,0 +1,30 @@
+.sidenav {
+    width:10vw;
+    height:100vh;
+    z-index:100;
+    justify-content: space-evenly;
+    flex-direction: column;
+    display: flex;
+    position:fixed;
+    top:0;
+    left: 0;
+    padding: 35px;
+    background-color: #81d8cc;
+}
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+    position: fixed;
+    width: 80%;
+    right: 0;
+    padding-left: 25px;
+}
+
+.avatar {
+    width: 85%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display:block;
+    object-fit: cover;
+    
+  }
