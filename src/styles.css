@@ -103,3 +103,8 @@ form .inputField{
   display: flex;
 }
 
+.simplepopup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
