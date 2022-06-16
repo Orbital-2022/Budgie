@@ -2,133 +2,33 @@ import React from "react";
 import { supabase } from "../config/supabaseClient";
 import styles from "./MainPage.module.css";
 import { useNavigate } from "react-router-dom";
-import {useEffect, useState } from "react";
-import Box from "../components/Box";
+import { useEffect, useState } from "react";
 import {
-  TableContainer,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
   Paper,
-  Button
+  Button,
+  Grid,
 } from '@mui/material'
+import { makeStyles } from '@mui/styles';
+import  ExpenseCard  from "../components/Common/ExpenseCard";
+import IncomeCard from "../components/Common/IncomeCard";
+import RecordsTable from "../components/Common/RecordsTable";
+import ExpensePopUp from "../components/PopUp/ExpensePopUp";
+import AddIcon from '@mui/icons-material/Add';
+//import { createTheme,ThemeProvider } from '@mui/material/styles';
 
 
-function IncomeCard() {
-  const [data, setData] = useState([]);
-  const user = supabase.auth.user();
+const useStyles = makeStyles((theme) => ({
+  grid:{
+    width: "100%",
+    margin:"0px"
+  },
 
-  useEffect(() => {fetchData().catch(console.error);}, []);
-  const fetchData = async () => {
-    let { data: income, error } = await supabase
-        .from('incomes')
-        .select("*")
-        .eq('user_id',user.id)
+  sidenav:{
+    height: "100%",
+    left:"0px",
+  },
 
-    if (error) console.log("error", error);
-    else setData(income);
-  };
-  
-  let sum = 0;
-
-  for (let index = 0; index < data.length; index++) {
-  sum += data[index].amount;
-  }
-  return (
-      <Box>
-          <h2>Total income:{sum}</h2>
-      </Box>
-  )
-}
-
-function ExpenseCard() {
-  const [data, setData] = useState([]);
-  const user = supabase.auth.user();
-
-  useEffect(() => {fetchData().catch(console.error);}, []);
-  const fetchData = async () => {
-    let { data: expense, error } = await supabase
-        .from('expenses')
-        .select("*")
-        .eq('user_id',user.id)
-
-    if (error) console.log("error", error);
-    else setData(expense);
-  };
-  
-  let sum = 0;
-
-  for (let index = 0; index < data.length; index++) {
-  sum += data[index].amount;
-  }
-
-  return (
-      <Box>
-          <h2>Total expense:{sum}</h2>
-      </Box>
-  )
-}
-
-function RecordsTable(){
-  const [data, setData] = useState([]);
-  const user = supabase.auth.user();
-
-  useEffect(() => {fetchData().catch(console.error);}, []);
-  const fetchData = async () => {
-    let { data: expense, error } = await supabase
-        .from('expenses')
-        .select("*")
-        .eq('user_id',user.id)
-
-    if (error) console.log("error", error);
-    else setData(expense);
-  };
-
-  return (
-    <TableContainer sx={{ maxHeight: '300px' }} component={Paper}>
-      <Table stickyHeader aria-label='simple table'>
-        <TableHead>
-          <TableRow>
-            <TableCell></TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Amount</TableCell>
-            <TableCell>Remarks</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(row => (
-            <TableRow
-              key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-               <TableCell></TableCell>
-              <TableCell>{row.expense_date}</TableCell>
-              <TableCell>{row.category}</TableCell>
-              <TableCell>{row.amount}</TableCell>
-              <TableCell align='center'>{row.remark}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  )
-}
-
-  
-export function CardsAndTable() {
-
-  return (
-    <div className={styles.container}>
-    <h1>Your Balance: </h1>
-    <IncomeCard />
-    <ExpenseCard />    
-    <RecordsTable /> 
-     </div>
-
-  );
-}
+}));
 
 function MainPage({session}) {
     
@@ -167,22 +67,25 @@ function MainPage({session}) {
         alert(error.message)
       } 
     }
-
     const url = "https://isqkkncijlswaxsakfwb.supabase.co/storage/v1/object/public/avatars/" + avatar_url;
-  
+    
+    const classes = useStyles();
+
     return (
-      <div>
-        <div className={styles.sidenav}>
+      
+      <Grid container className={classes.grid}>
+        <Grid item xs={2} className={classes.sidenav}>
+          <div className={styles.layout} elevation={0}>
             <img src={url} alt="profile" className={styles.avatar}></img>
             <p> {username}</p>
-        <Button 
+            <Button 
             variant="contained" 
             style={{ borderRadius: 20, 
             backgroundColor: "#21b6ae", 
             padding: "12px 30px",
             fontSize: "12px"}}
             href="/mainpage"> 
-            Home Page
+            Home
             </Button>
             <Button 
             variant="contained" 
@@ -203,15 +106,38 @@ function MainPage({session}) {
           padding: "12px 30px",
           fontSize: "12px"}}
           onClick={handleLogout}> Logout </Button>
-        </div>
-        <CardsAndTable />
-        </div>
+        
+          </div>
+        </Grid>
+          <Grid item xs={10} container spacing={2}>
+            
+            <Grid item xs={12}>
+            <h2>Your Current Balance: </h2>
+            </Grid>
+            <Grid item xs={6} >
+            <IncomeCard />
+            </Grid>
+            <Grid item xs={6} >
+            <ExpenseCard />
+            </Grid>
+            
+            <Grid item xs={12}>
+            <RecordsTable />
+            </Grid>
+            <Grid item xs={10}> </Grid>
+            <Grid item xs={1}>
+              <Button variant="contained" 
+              style={{ borderRadius: 20, 
+              backgroundColor: "#21b6ae", 
+              padding: "12px 30px", 
+              fontSize: "12px"}} 
+              endIcon={<AddIcon />}>
+              <ExpensePopUp user = {supabase.auth.user()}/>
+              </Button >
+            </Grid>
+          </Grid>
+      </Grid>
+      
     )
 }
 export default MainPage;
-
-/**
- *  <div>
-            <ul>{data.map(data => <li key={data}> {data.amount} </li>)}</ul>
-          </div>
- */

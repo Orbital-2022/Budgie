@@ -6,7 +6,7 @@ import Avatar  from "../login/Avatar";
 import { Grid } from '@mui/material';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import SimplePaper from '../components/SimplePaper';
+import SimplePaper from '../components/SimplePaper/SimplePaper';
 //import Logo from '../Logo.png';
 
 const Account = () => {

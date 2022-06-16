@@ -1,23 +1,16 @@
 .sidenav {
-    width:10vw;
     height:100vh;
-    z-index:100;
-    justify-content: space-evenly;
-    flex-direction: column;
-    display: flex;
     position:fixed;
     top:0;
     left: 0;
-    padding: 35px;
+    padding: 25px;
     background-color: #81d8cc;
 }
 .container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
     position: fixed;
-    width: 80%;
-    right: 0;
-    padding-left: 25px;
+    padding: 25px;
 }
 
 .avatar {
@@ -28,3 +21,27 @@
     object-fit: cover;
     
   }
+
+.item10 {
+    height: "10vh";
+    padding-left: 20%;
+  }
+
+.item20 {
+    height: "20vh";
+   right: 0;
+  }
+.item70{
+    height: "70vh";
+    right: 0;
+}
+
+.layout{
+  display: flex;
+  height:100vh;
+  justify-content:space-evenly;
+  flex-direction: column;
+  text-align: center;
+  background-color: #81d8cc;
+  padding: 25px;
+}
