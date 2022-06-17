@@ -8,6 +8,7 @@ export default function IncomeCard() {
     const user = supabase.auth.user();
   
     useEffect(() => {fetchData().catch(console.error);}, []);
+    
     const fetchData = async () => {
       let { data: income, error } = await supabase
           .from('incomes')
@@ -29,3 +30,5 @@ export default function IncomeCard() {
         </Box>
     )
   }
+
+  

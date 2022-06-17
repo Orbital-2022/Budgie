@@ -8,8 +8,12 @@ import {
     TableRow,
     TableCell,
     Paper,
-    Button
+    Button,
+    IconButton
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 async function deleteExpenseRecords(id){
 
@@ -27,11 +31,25 @@ export default function RecordsTable(){
     const user = supabase.auth.user();
   
     useEffect(() => {fetchData().catch(console.error);}, []);
+    useEffect(() => {
+      const subscription = supabase
+          .from('expenses')
+          .on('*', payload => {
+          console.log('Change received!', payload)
+          })
+          .subscribe()
+  
+      return () => {
+        supabase.removeSubscription(subscription)
+      }
+    }, []);
+
     const fetchData = async () => {
       let { data: expense, error } = await supabase
           .from('expenses')
           .select("*")
           .eq('user_id',user.id)
+          .order('expense_date', { ascending: false })
   
       if (error) console.log("error", error);
       else setData(expense);
@@ -47,7 +65,7 @@ export default function RecordsTable(){
               <TableCell align='left'>Category</TableCell>
               <TableCell align='left'>Amount</TableCell>
               <TableCell align='left'>Remarks</TableCell>
-              <TableCell colSpan={2} >Action</TableCell>
+              <TableCell align="center" >Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -56,12 +74,22 @@ export default function RecordsTable(){
                 key={data.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                  <TableCell></TableCell>
-                <TableCell>{data.expense_date}</TableCell>
+                <TableCell align='center'>{data.expense_date}</TableCell>
                 <TableCell>{data.category}</TableCell>
                 <TableCell>{data.amount}</TableCell>
-                <TableCell align='center'>{data.remark}</TableCell>
-                <Button variant="contained" style={{ borderRadius: 20, backgroundColor: "#21b6ae"}} >Edit</Button>
-                <Button variant="contained" style={{ borderRadius: 20, backgroundColor: "#21b6ae"}} onClick={()=> deleteExpenseRecords(data.id)}>Delete</Button>
+                <TableCell>{data.remark}</TableCell>
+                <TableCell> 
+                <IconButton>
+                    <EditIcon />
+                    
+                  </IconButton>
+                  <IconButton>
+                    
+                    <DeleteIcon onClick={()=> deleteExpenseRecords(data.id)} />
+                  </IconButton>
+                 
+                </TableCell>
+                
               </TableRow>
             ))}
           </TableBody>

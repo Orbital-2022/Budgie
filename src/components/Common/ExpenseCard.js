@@ -7,7 +7,20 @@ export default function ExpenseCard() {
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
   
-    useEffect(() => {fetchData().catch(console.error);}, []);
+    useEffect(() => { fetchData().catch(console.error);}, []);
+    useEffect(() => {
+        const subscription = supabase
+            .from('expenses')
+            .on('*', payload => {
+            console.log('Change received!', payload)
+            })
+            .subscribe()
+    
+        return () => {
+          supabase.removeSubscription(subscription)
+        }
+      }, []);
+
     const fetchData = async () => {
       let { data: expense, error } = await supabase
           .from('expenses')
