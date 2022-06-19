@@ -8,11 +8,12 @@ export default function ExpenseCard() {
     const user = supabase.auth.user();
   
     useEffect(() => { fetchData().catch(console.error);}, []);
+
     useEffect(() => {
         const subscription = supabase
             .from('expenses')
-            .on('*', payload => {
-            console.log('Change received!', payload)
+            .on('*', data => {
+            console.log('Change received!', data)
             })
             .subscribe()
     

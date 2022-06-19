@@ -4,18 +4,11 @@ import styles from "./MainPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
-  Paper,
   Button,
   Grid,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
-import  ExpenseCard  from "../components/Common/ExpenseCard";
-import IncomeCard from "../components/Common/IncomeCard";
-import RecordsTable from "../components/Common/RecordsTable";
-import ExpensePopUp from "../components/PopUp/ExpensePopUp";
-import AddIcon from '@mui/icons-material/Add';
-//import { createTheme,ThemeProvider } from '@mui/material/styles';
-
+import DoughnutChart from "../components/Common/DoughnutChart.js";
 
 const useStyles = makeStyles((theme) => ({
   grid:{
@@ -30,12 +23,13 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function MainPage({session}) {
+function SummaryPage() {
     
     const [username, setUsername] = useState(null)
     const [avatar_url, setAvatarUrl] = useState(null)
 
     const navigate = useNavigate();
+    
     async function handleLogout() {
         await supabase.auth.signOut();
           navigate("/");
@@ -43,7 +37,7 @@ function MainPage({session}) {
   
     useEffect(() => {
       getProfile()
-    }, [session])
+    }, [])
   
     const getProfile = async () => {
       try {
@@ -72,7 +66,6 @@ function MainPage({session}) {
     const classes = useStyles();
 
     return (
-      
       <Grid container className={classes.grid}>
         <Grid item xs={2} className={classes.sidenav}>
           <div className={styles.layout} elevation={0}>
@@ -101,7 +94,8 @@ function MainPage({session}) {
             backgroundColor: "#21b6ae", 
             padding: "12px 30px", 
             fontSize: "12px"}}
-            href="/summary"> Summary </Button>
+            href="/summary">
+            Summary </Button>
         <Button variant="contained" style={{ borderRadius: 20, backgroundColor: "#21b6ae", padding: "12px 30px",fontSize: "12px"}}> Setting </Button>
         <Button 
         variant="contained" 
@@ -114,34 +108,22 @@ function MainPage({session}) {
         
           </div>
         </Grid>
-          <Grid item xs={10} container spacing={2}>
-            <Grid item xs={12}>
-            <h2>Your Current Balance: </h2>
-            </Grid>
-            <Grid item xs={6} >
-            <IncomeCard />
-            </Grid>
-            <Grid item xs={6} >
-            <ExpenseCard />
-            </Grid>
-            
-            <Grid item xs={12}>
-            <RecordsTable />
-            </Grid>
-            <Grid item xs={10}> </Grid>
-            <Grid item xs={1}>
-              <Button variant="contained" 
-              style={{ borderRadius: 20, 
-              backgroundColor: "#21b6ae", 
-              padding: "12px 30px", 
-              fontSize: "12px"}} 
-              endIcon={<AddIcon />}>
-              <ExpensePopUp user = {supabase.auth.user()}/>
-              </Button >
-            </Grid>
+        <Grid item xs={10} container style={{textAlign: "center"}}>
+          <Grid item xs={12}>
+            <h1>
+              Your Summary
+            </h1>
           </Grid>
-      </Grid>
-      
+          <Grid item xs={3}>
+          </Grid>
+          <Grid item xs={6} >
+          <DoughnutChart />
+          </Grid>
+          <Grid item xs={3}>
+          </Grid>
+        </Grid>
+     </Grid>
     )
 }
-export default MainPage;
+
+export default SummaryPage;
