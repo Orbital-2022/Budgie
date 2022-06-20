@@ -29,7 +29,7 @@ async function deleteExpenseRecords(id){
 export default function RecordsTable(){
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
-  
+    useEffect(() => {fetchData().catch(console.error);}, [data]);
     
     useEffect(() => {
 

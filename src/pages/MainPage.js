@@ -114,6 +114,7 @@ function MainPage({session}) {
         
           </div>
         </Grid>
+        
           <Grid item xs={10} container spacing={2}>
             <Grid item xs={12}>
             <h2>Your Current Balance: </h2>

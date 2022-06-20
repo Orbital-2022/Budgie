@@ -7,7 +7,7 @@ export default function IncomeCard() {
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
   
-    useEffect(() => {fetchData().catch(console.error);}, []);
+    useEffect(() => {fetchData().catch(console.error);}, [data]);
     
     const fetchData = async () => {
       let { data: income, error } = await supabase
