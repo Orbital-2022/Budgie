@@ -7,7 +7,7 @@ export default function ExpenseCard() {
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
   
-    useEffect(() => { fetchData().catch(console.error);}, []);
+    useEffect(() => { fetchData().catch(console.error);}, [data]);
     useEffect(() => {
         const subscription = supabase
             .from('expenses')
@@ -21,6 +21,7 @@ export default function ExpenseCard() {
         }
       }, []);
 
+
     const fetchData = async () => {
       let { data: expense, error } = await supabase
           .from('expenses')
@@ -30,7 +31,8 @@ export default function ExpenseCard() {
       if (error) console.log("error", error);
       else setData(expense);
     };
-    
+
+
     let sum = 0;
   
     for (let index = 0; index < data.length; index++) {
