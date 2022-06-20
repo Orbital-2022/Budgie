@@ -11,8 +11,8 @@ export default function ExpenseCard() {
     useEffect(() => {
         const subscription = supabase
             .from('expenses')
-            .on('*', payload => {
-            console.log('Change received!', payload)
+            .on('*', data => {
+            console.log('Change received!', data)
             })
             .subscribe()
     

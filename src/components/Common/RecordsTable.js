@@ -29,13 +29,15 @@ async function deleteExpenseRecords(id){
 export default function RecordsTable(){
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
-  
+
     useEffect(() => {fetchData().catch(console.error);}, [data]);
     useEffect(() => {
+
+      fetchData().catch(console.error);
       const subscription = supabase
           .from('expenses')
-          .on('*', payload => {
-          console.log('Change received!', payload)
+          .on('*', expenses => {
+          console.log('Change received!', expenses)
           })
           .subscribe()
   
