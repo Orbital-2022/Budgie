@@ -4,7 +4,7 @@ import styles from "./MainPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
-  Paper,
+  //Paper,
   Button,
   Grid,
 } from '@mui/material'
@@ -13,6 +13,7 @@ import  ExpenseCard  from "../components/Common/ExpenseCard";
 import IncomeCard from "../components/Common/IncomeCard";
 import RecordsTable from "../components/Common/RecordsTable";
 import ExpensePopUp from "../components/PopUp/ExpensePopUp";
+import IncomePopUp from "../components/PopUp/IncomePopUp";
 import AddIcon from '@mui/icons-material/Add';
 //import { createTheme,ThemeProvider } from '@mui/material/styles';
 
@@ -117,7 +118,7 @@ function MainPage({session}) {
         
           <Grid item xs={10} container spacing={2}>
             <Grid item xs={12}>
-            <h2>Your Current Balance: </h2>
+            <h2> Your Current Balance: </h2>
             </Grid>
             <Grid item xs={6} >
             <IncomeCard />
@@ -129,7 +130,7 @@ function MainPage({session}) {
             <Grid item xs={12}>
             <RecordsTable />
             </Grid>
-            <Grid item xs={10}> </Grid>
+            <Grid item xs={7}> </Grid>
             <Grid item xs={1}>
               <Button variant="contained" 
               style={{ borderRadius: 20, 
@@ -138,7 +139,20 @@ function MainPage({session}) {
               fontSize: "12px"}} 
               endIcon={<AddIcon />}>
               <ExpensePopUp user = {supabase.auth.user()}/>
-              </Button >
+              </Button>
+            </Grid>
+            <Grid item xs={1}>
+
+            </Grid>
+            <Grid item xs={1}>
+              <Button variant="contained" 
+              style={{ borderRadius: 20, 
+              backgroundColor: "#21b6ae", 
+              padding: "12px 30px", 
+              fontSize: "12px"}} 
+              endIcon={<AddIcon />}>
+              <IncomePopUp user = {supabase.auth.user()}/>
+              </Button>
             </Grid>
           </Grid>
       </Grid>

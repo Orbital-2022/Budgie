@@ -8,7 +8,7 @@ import {
     TableRow,
     TableCell,
     Paper,
-    Button,
+    //Button,
     IconButton
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -29,8 +29,8 @@ async function deleteExpenseRecords(id){
 export default function RecordsTable(){
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
+
     useEffect(() => {fetchData().catch(console.error);}, [data]);
-    
     useEffect(() => {
 
       fetchData().catch(console.error);
