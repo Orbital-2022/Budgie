@@ -29,14 +29,3 @@ export default function IncomePopup (props) {
 
     )
 }
-//failed attempt to make it a popup
-/* <Button onClick={() => setButtonPopup(true)}>
-                    Add Expense
-                </Button>
-                
-                <EditExpensePopup 
-                trigger = {buttonPopup}
-                setTrigger = {setButtonPopup}
-                user= {props.user}
-                />
-                */

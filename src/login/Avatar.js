@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../config/supabaseClient'
 import VisuallyHidden from '@reach/visually-hidden'
+import { Button, Avatar } from '@mui/material';
+import "../styles.css";
 
-export default function Avatar({ url, size, onUpload }) {
+export default function Avatarz({ url, size, onUpload }) {
   const [avatarUrl, setAvatarUrl] = useState(null)
   const [uploading, setUploading] = useState(false)
 
@@ -52,7 +54,7 @@ export default function Avatar({ url, size, onUpload }) {
 
   return (
     <div style={{ width: size }} aria-live="polite">
-      <img
+      <Avatar
         src={avatarUrl ? avatarUrl : `https://place-hold.it/${size}x${size}`}
         alt={avatarUrl ? 'Avatar' : 'No image'}
         className="avatar image"
@@ -60,8 +62,8 @@ export default function Avatar({ url, size, onUpload }) {
       />
       {uploading ? "Uploading..." : (
         <>
-          <label className="button primary block" htmlFor="single">
-            Upload an avatar
+          <label htmlFor="single" className="button primary block">
+            Edit Avatar
           </label>
           <VisuallyHidden>
             <input

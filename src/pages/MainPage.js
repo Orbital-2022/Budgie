@@ -103,7 +103,7 @@ function MainPage({session}) {
             padding: "12px 30px", 
             fontSize: "12px"}}
             href="/summary"> Summary </Button>
-        <Button variant="contained" style={{ borderRadius: 20, backgroundColor: "#21b6ae", padding: "12px 30px",fontSize: "12px"}}> Setting </Button>
+        <Button variant="contained" style={{ borderRadius: 20, backgroundColor: "#21b6ae", padding: "12px 30px",fontSize: "12px"}}> Settings </Button>
         <Button 
         variant="contained" 
         style={{ 

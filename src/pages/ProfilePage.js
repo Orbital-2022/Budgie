@@ -2,11 +2,13 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import Avatar  from "../login/Avatar";
+import Avatarz  from "../login/Avatar";
 //import { Grid } from '@mui/material';
-import { Button } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import SimplePaper from '../components/SimplePaper/SimplePaper';
+import "../styles.css";
+//import { CenterFocusStrong } from '@material-ui/icons';
 //import Logo from '../Logo.png';
 
 const Account = () => {
@@ -19,6 +21,7 @@ const Account = () => {
   
   useEffect(() => {
     getProfile()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getProfile = async () => {
@@ -80,23 +83,26 @@ const Account = () => {
     return (
       /*<div aria-live="polite">*/
       <div>
-          <Avatar
+        
+    
+       <SimplePaper>
+       <h1 id="ProfileTitle">My Profile</h1>
+       <Box className= "centre">
+       <Avatarz
           url={avatar_url}
-          size={200}
+          size={150}
           onUpload={(url) => { setAvatarUrl(url)
           updateProfile({ username, avatar_url: url })
         }}
         />
-    
-       <SimplePaper>
-       <h1 id="ProfileTitle">My Profile</h1>
+        </Box>
         {loading ? (
           'Saving ...'
         ) : (
               
           <form onSubmit={updateProfile} className="LoginTextGrid">
             <div>
-              <label className="loginlabel2"htmlFor="username">Name: </label>
+              <label className="loginlabel2" htmlFor="username">Name: </label>
               <TextField
                 id="username"
                 className="inputfield"
@@ -113,12 +119,12 @@ const Account = () => {
             </div>
           </form>
         )}
-        <box id="profilebottom">
+        <Box id="profilebottom">
          <Button type="button" className="submitbtnmedium" onClick={() => logout}>
           Sign Out
         </Button>
         <Button onClick={()=>navigate("/mainpage")} className="submitbtnmedium">Main Page</Button>
-        </box>
+        </Box>
         </SimplePaper>
       </div>
     )
