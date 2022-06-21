@@ -1,12 +1,13 @@
 import { useEffect,useState } from "react";
 import { Doughnut } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
+//import Chart from 'chart.js/auto';
 import { supabase } from "../../config/supabaseClient"; 
 
 function DoughnutChart(){
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { fetchData().catch(console.error);}, []);
     
     const fetchData = async () => {
@@ -21,11 +22,16 @@ function DoughnutChart(){
     
     var food = 0;
     var entertainment = 0;
-    var shopping = 0;
-    var commuting = 0;
-    var bills = 0;
-    var others = 0;
+    var clothing = 0;
     var healthcare = 0;
+    var travel = 0;
+    var shopping = 0;
+    var personalcare = 0;
+    var investment = 0;
+    var gift = 0;
+    var utilities = 0;
+    var others = 0;
+
 
      for (let index = 0; index < data.length; index++) {
         if (data[index].category === "Food") {
@@ -34,34 +40,53 @@ function DoughnutChart(){
         else if (data[index].category === "Entertainment") {
             entertainment += data[index].amount;
         }
-       
+
+        else if (data[index].category === "Clothing") {
+            clothing += data[index].amount;
+        }
+    
+        else if (data[index].category === "Healthcare") {
+            healthcare += data[index].amount;
+        }
+         
+        else if (data[index].category === "Travel") {
+            travel += data[index].amount;
+        }
+        
         else if (data[index].category === "Shopping") {
             shopping += data[index].amount;
         }
-         
-        else if (data[index].category === "Commuting") {
-            commuting += data[index].amount;
+
+        else if (data[index].category === "Personal Care") {
+            others += data[index].amount;
         }
-         
-        else if (data[index].category === "Bills") {
-            bills += data[index].amount;
-        }
+
         
+        else  if (data[index].category === "Investment") {
+            investment += data[index].amount;
+        }
+
+        else if (data[index].category === "Gifts & Donations") {
+            gift += data[index].amount;
+        }
+
+        else if (data[index].category === "Utilities") {
+            utilities += data[index].amount;
+        }
+
+    
         else if (data[index].category === "Others") {
             others += data[index].amount;
         }
 
-        else  if (data[index].category === "Healthcare") {
-            healthcare += data[index].amount;
-        }
     
     }
 
   
 const expenseData = {
-    labels:['Food', 'Entertainment', 'Shopping', 'Commuting','Bills','Others','Healthcare'],
+    labels:['Food', 'Entertainment', 'Clothing', 'Healthcare', 'Travel', 'Shopping', 'Personal Care', 'Investment', 'Gifts & Donations', 'Utilities', 'Others'],
     datasets:[{
-        data:[food, entertainment, shopping, commuting, bills, others, healthcare],
+        data:[food, entertainment, clothing, healthcare, travel, shopping, personalcare, investment, gift, utilities, others],
         backgroundColor: [
             "#FFC4C8",
             "#FF5685",
@@ -69,7 +94,12 @@ const expenseData = {
             "#FEB25E",
             "#6AC7E6",
             "#D6A3DC",
-            "#6ACCBC"
+            "#6ACCBC",
+            "#85ff56",
+            "#003f5c",
+            "#4974a5",
+            "#F5F5DC"
+
         ]
 
     }]
