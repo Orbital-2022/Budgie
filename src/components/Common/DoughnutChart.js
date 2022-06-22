@@ -10,15 +10,21 @@ function DoughnutChart(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { fetchData().catch(console.error);}, []);
     
+    var date1 = '2022-06-01';
+    var date2 = '2022-06-30';
     const fetchData = async () => {
       let { data: expense, error } = await supabase
           .from('expenses')
           .select("*")
           .eq('user_id',user.id)
+          .lt('expense_date', date2)
+          .gt('expense_date', date1);
   
       if (error) console.log("error", error);
       else setData(expense);
     };
+
+    console.log(data);
     
     var food = 0;
     var entertainment = 0;
