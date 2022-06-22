@@ -1,6 +1,6 @@
 import { useEffect,useState } from "react";
 import { Doughnut } from 'react-chartjs-2';
-//import Chart from 'chart.js/auto';
+import Chart from 'chart.js/auto';
 import { supabase } from "../../config/supabaseClient"; 
 
 function DoughnutChart(){
@@ -101,8 +101,15 @@ const expenseData = {
             "#F5F5DC"
 
         ]
-
-    }]
+    }],
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Custom Chart Title'
+            }
+        }
+    }
 }
  
     return (
