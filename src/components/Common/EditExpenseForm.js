@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { supabase } from '../../config/supabaseClient';
-//import DatePicker from "react-datepicker";
-//import $ from "jquery";
-//import moment from "moment";
+import DatePicker from "react-datepicker";
+import $ from "jquery";
+import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
+import { parseISO } from 'date-fns'
 
 
 class EditExpenseForm extends Component {
@@ -11,8 +12,7 @@ class EditExpenseForm extends Component {
       super(props);
 
       this.state = {
-          date:"",
-          //date: moment(),
+          date:  parseISO(moment().format("YYYY-MM-DD")),
           amount: "",
           category: "Food",
           remarks: "",
@@ -23,7 +23,7 @@ class EditExpenseForm extends Component {
 
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
-      //this.handelDateChange = this.handelDateChange.bind(this);
+      this.handleDateChange = this.handleDateChange.bind(this);
   }
   
   handleSubmit = async(event) => {
@@ -32,8 +32,8 @@ class EditExpenseForm extends Component {
       .from('expenses')
       .insert({
           user_id: this.state.uid,
-          expense_date:  this.state.date,
-          //expense_date: $(".date").val(),
+          //expense_date:  this.state.date,
+          expense_date: $(".date").val(),
           amount:  this.state.amount,
           category:  this.state.category,
           remark:  this.state.remarks,
@@ -45,18 +45,18 @@ class EditExpenseForm extends Component {
           this.setState({data: expense});
       }
     
-      handleChange(e) {
+    handleChange(e) {
         // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
         var change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
     }
 
-    /*handelDateChange(date) {
+    handleDateChange(date) {
         this.setState({
             date: date
         });
-    }*/
+    }
 
     render(){
     return (
@@ -66,14 +66,15 @@ class EditExpenseForm extends Component {
                   <span>Date</span>
               </label>
               <div className="TBC">
-                  <input
+                  <DatePicker
                       className={
                           "form-control date " 
                       }
+                      dateFormat="yyyy-MM-dd"
                       name="date"
-                      //selected={this.state.date}
-                      onChange={this.handleChange.bind(this)}
-                      value={this.state.date}
+                      selected={this.state.date}
+                      onChange={this.handleDateChange.bind(this)}
+                      //value={this.state.date}
                   />
               </div>
           </div>
@@ -105,7 +106,6 @@ class EditExpenseForm extends Component {
                       onChange={this.handleChange.bind(this)}
                   >
                       <option value="Food"> Food </option>
-                      <option value="Automobile">Automobile</option>
                       <option value="Entertainment">Entertainment</option>
                       <option value="Clothing">Clothing</option>
                       <option value="Healthcare">Healthcare</option>

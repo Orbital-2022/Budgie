@@ -8,8 +8,7 @@ import {
   Grid,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
-import DoughnutChart from "../components/Common/DoughnutChart.js";
-import IncomeCard from "../components/Common/IncomeCard.js";
+
 
 const useStyles = makeStyles((theme) => ({
   grid:{
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function SummaryPage() {
+function SettingPage() {
     
     const [username, setUsername] = useState(null)
     const [avatar_url, setAvatarUrl] = useState(null)
@@ -97,7 +96,12 @@ function SummaryPage() {
             fontSize: "12px"}}
             href="/summary">
             Summary </Button>
-        <Button variant="contained" style={{ borderRadius: 20, backgroundColor: "#21b6ae", padding: "12px 30px",fontSize: "12px"}}> Setting </Button>
+        <Button variant="contained" 
+        style={{ borderRadius: 20, 
+        backgroundColor: "#21b6ae", 
+        padding: "12px 30px",
+        fontSize: "12px"}}
+        href="/setting"> Setting </Button>
         <Button 
         variant="contained" 
         style={{ 
@@ -110,22 +114,10 @@ function SummaryPage() {
           </div>
         </Grid>
         <Grid item xs={10} container style={{textAlign: "center"}}>
-          <Grid item xs={12}>
-            <h1>
-              Your Summary
-            </h1>
-          </Grid>
-          <Grid item xs={3}>
-          </Grid>
-          <Grid item xs={6} >
-          <IncomeCard />
-          <DoughnutChart />
-          </Grid>
-          <Grid item xs={3}>
-          </Grid>
+          
         </Grid>
      </Grid>
     )
 }
 
-export default SummaryPage;
+export default SettingPage;

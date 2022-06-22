@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import  ExpenseCard  from "../components/Common/ExpenseCard";
-import IncomeCard from "../components/Common/IncomeCard";
+import CurrentBalance from "../components/Common/CurrentBalance";
 import RecordsTable from "../components/Common/RecordsTable";
 import ExpensePopUp from "../components/PopUp/ExpensePopUp";
 import IncomePopUp from "../components/PopUp/IncomePopUp";
@@ -103,7 +103,11 @@ function MainPage({session}) {
             padding: "12px 30px", 
             fontSize: "12px"}}
             href="/summary"> Summary </Button>
-        <Button variant="contained" style={{ borderRadius: 20, backgroundColor: "#21b6ae", padding: "12px 30px",fontSize: "12px"}}> Setting </Button>
+        <Button variant="contained" 
+        style={{ borderRadius: 20,
+         backgroundColor: "#21b6ae", 
+         padding: "12px 30px",
+         fontSize: "12px"}}href="/setting"> Settings </Button>
         <Button 
         variant="contained" 
         style={{ 
@@ -118,10 +122,9 @@ function MainPage({session}) {
         
           <Grid item xs={10} container spacing={2}>
             <Grid item xs={12}>
-            <h2> Your Current Balance: </h2>
             </Grid>
             <Grid item xs={6} >
-            <IncomeCard />
+            <CurrentBalance />
             </Grid>
             <Grid item xs={6} >
             <ExpenseCard />
