@@ -8,6 +8,8 @@ import {
   Grid,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
+import SetBudget from "../components/Common/SetBudget";
+import SimplePaper from "../components/SimplePaper/SimplePaper";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,10 +25,13 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+const user = supabase.auth.user()
+
 function SettingPage() {
     
     const [username, setUsername] = useState(null)
     const [avatar_url, setAvatarUrl] = useState(null)
+    const [budget, setBudget] = useState(null)
 
     const navigate = useNavigate();
     
@@ -37,11 +42,15 @@ function SettingPage() {
   
     useEffect(() => {
       getProfile()
+      fetchBudget()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-  
+    
+    
+
     const getProfile = async () => {
       try {
-        const user = supabase.auth.user()
+    
   
         let { data, error, status } = await supabase
           .from('profiles')
@@ -61,9 +70,22 @@ function SettingPage() {
         alert(error.message)
       } 
     }
+
+    const fetchBudget = async () => {
+      
+      let { data: budget, error } = await supabase
+          .from('budget')
+          .select("amount")
+          .eq('id',user.id)
+  
+      if (error) console.log("error", error);
+      else setBudget(budget);
+    };
+    
     const url = "https://isqkkncijlswaxsakfwb.supabase.co/storage/v1/object/public/avatars/" + avatar_url;
     
     const classes = useStyles();
+
 
     return (
       <Grid container className={classes.grid}>
@@ -114,7 +136,9 @@ function SettingPage() {
           </div>
         </Grid>
         <Grid item xs={10} container style={{textAlign: "center"}}>
-          
+          <SimplePaper>
+          <SetBudget user = {user} amount = {budget}/>
+          </SimplePaper>
         </Grid>
      </Grid>
     )

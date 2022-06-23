@@ -1,7 +1,9 @@
 import { useEffect,useState } from "react";
 import { Doughnut } from 'react-chartjs-2';
+// eslint-disable-next-line no-unused-vars
 import Chart from 'chart.js/auto';
 import { supabase } from "../../config/supabaseClient"; 
+import { format, startOfMonth, endOfMonth } from 'date-fns';
 
 function DoughnutChart(){
     const [data, setData] = useState([]);
@@ -9,15 +11,28 @@ function DoughnutChart(){
   
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { fetchData().catch(console.error);}, []);
-    
+
+    const now = new Date();
+    const start = format(startOfMonth(now), "yyyy-MM-dd");
+    const end = format(endOfMonth(now), "yyyy-MM-dd");
+
+
     const fetchData = async () => {
       let { data: expense, error } = await supabase
           .from('expenses')
           .select("*")
           .eq('user_id',user.id)
+          .lt('expense_date', end)
+          .gt('expense_date', start);
   
-      if (error) console.log("error", error);
-      else setData(expense);
+      if (error) 
+      {console.log("error", error);
+      console.log(start);
+    }
+      else {
+        console.log(start);
+        setData(expense);
+      }
     };
     
     var food = 0;

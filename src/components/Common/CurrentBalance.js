@@ -8,7 +8,9 @@ export default function CurrentBalance() {
     const [budget, setBudget] = useState([]);
     const user = supabase.auth.user();
   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { fetchData().catch(console.error);}, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { fetchBudget().catch(console.error);}, [budget]);
     useEffect(() => {
         const subscription = supabase
@@ -23,6 +25,18 @@ export default function CurrentBalance() {
         }
       }, []);
 
+      useEffect(() => {
+        const subscription = supabase
+            .from('budget')
+            .on('*', data => {
+            console.log('Change received!', data)
+            })
+            .subscribe()
+    
+        return () => {
+          supabase.removeSubscription(subscription)
+        }
+      }, []);
 
     const fetchData = async () => {
       let { data: expense, error } = await supabase
@@ -38,7 +52,7 @@ export default function CurrentBalance() {
         let { data: budget, error } = await supabase
             .from('budget')
             .select("amount")
-            .eq('user_id',user.id)
+            .eq('id',user.id)
     
         if (error) console.log("error", error);
         else setBudget(budget);
@@ -61,7 +75,7 @@ export default function CurrentBalance() {
   
     return (
         <Box>
-            <h2> Current balance:{balance}</h2>
+            <h2> Remaining Budget:{balance}</h2>
         </Box>
     )
   }

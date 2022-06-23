@@ -3,13 +3,26 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import Avatarz  from "../login/Avatar";
-//import { Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import SimplePaper from '../components/SimplePaper/SimplePaper';
+import styles from "./MainPage.module.css";
+import { makeStyles } from '@mui/styles';
 import "../styles.css";
-//import { CenterFocusStrong } from '@material-ui/icons';
-//import Logo from '../Logo.png';
+
+const useStyles = makeStyles((theme) => ({
+  grid:{
+    width: "100%",
+    margin:"0px"
+  },
+
+  sidenav:{
+    height: "100%",
+    left:"0px",
+  },
+
+}));
 
 const Account = () => {
   const [loading, setLoading] = useState(true);
@@ -23,6 +36,11 @@ const Account = () => {
     getProfile()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+      navigate("/");
+  }
 
   const getProfile = async () => {
     try {
@@ -79,12 +97,60 @@ const Account = () => {
     supabase.auth.signOut();
     navigate("/");
    };
+   const url = "https://isqkkncijlswaxsakfwb.supabase.co/storage/v1/object/public/avatars/" + avatar_url;
+    
+   const classes = useStyles();
 
     return (
-      /*<div aria-live="polite">*/
-      <div>
-        
-    
+      <Grid container className={classes.grid}>
+      <Grid item xs={2} className={classes.sidenav}>
+        <div className={styles.layout} elevation={0}>
+          <img src={url} alt="profile" className={styles.avatar}></img>
+          <p> {username}</p>
+          <Button 
+          variant="contained" 
+          style={{ borderRadius: 20, 
+          backgroundColor: "#21b6ae", 
+          padding: "12px 30px",
+          fontSize: "12px"}}
+          href="/mainpage"> 
+          Home
+          </Button>
+          <Button 
+          variant="contained" 
+          style={{ borderRadius: 20, 
+          backgroundColor: "#21b6ae", 
+          padding: "12px 30px",
+          fontSize: "12px"}}
+          href="/profile"> 
+          Profile
+          </Button>
+          <Button variant="contained" 
+          style={{ borderRadius: 20, 
+          backgroundColor: "#21b6ae", 
+          padding: "12px 30px", 
+          fontSize: "12px"}}
+          href="/summary">
+          Summary </Button>
+      <Button variant="contained" 
+      style={{ borderRadius: 20, 
+      backgroundColor: "#21b6ae", 
+      padding: "12px 30px",
+      fontSize: "12px"}}
+      href="/setting"> Setting </Button>
+      <Button 
+      variant="contained" 
+      style={{ 
+        borderRadius: 20, 
+        backgroundColor: "#21b6ae", 
+        padding: "12px 30px",
+        fontSize: "12px"}}
+        onClick={handleLogout}> Logout </Button>
+      
+        </div>
+      </Grid>
+
+      <Grid item xs={10} container style={{textAlign: "center"}}>
        <SimplePaper>
        <h1 id="ProfileTitle">My Profile</h1>
        <Box className= "centre">
@@ -126,7 +192,8 @@ const Account = () => {
         <Button onClick={()=>navigate("/mainpage")} className="submitbtnmedium">Main Page</Button>
         </Box>
         </SimplePaper>
-      </div>
+        </Grid>
+        </Grid>
     )
 }
 export default Account;

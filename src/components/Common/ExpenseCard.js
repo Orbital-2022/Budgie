@@ -7,6 +7,7 @@ export default function ExpenseCard() {
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { fetchData().catch(console.error);}, [data]);
     useEffect(() => {
         const subscription = supabase
