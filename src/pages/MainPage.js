@@ -9,12 +9,13 @@ import {
   Grid,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
-import  ExpenseCard  from "../components/Common/ExpenseCard";
+//import  ExpenseCard  from "../components/Common/ExpenseCard";
 import CurrentBalance from "../components/Common/CurrentBalance";
 import RecordsTable from "../components/Common/RecordsTable";
 import ExpensePopUp from "../components/PopUp/ExpensePopUp";
 import IncomePopUp from "../components/PopUp/IncomePopUp";
 import AddIcon from '@mui/icons-material/Add';
+import MonthlyExpenseCard from "../components/Common/MonthlyExpenseCard";
 //import { createTheme,ThemeProvider } from '@mui/material/styles';
 
 
@@ -127,7 +128,7 @@ function MainPage({session}) {
             <CurrentBalance />
             </Grid>
             <Grid item xs={6} >
-            <ExpenseCard />
+            <MonthlyExpenseCard />
             </Grid>
             
             <Grid item xs={12}>

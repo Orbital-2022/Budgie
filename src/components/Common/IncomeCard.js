@@ -7,6 +7,7 @@ export default function IncomeCard() {
     const [data, setData] = useState([]);
     const user = supabase.auth.user();
   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {fetchData().catch(console.error);}, [data]);
     
     const fetchData = async () => {
@@ -26,7 +27,7 @@ export default function IncomeCard() {
     }
     return (
         <Box>
-            <h2>Total income:{sum}</h2>
+            <h2>Total income: ${sum}</h2>
         </Box>
     )
   }

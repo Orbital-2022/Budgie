@@ -123,7 +123,7 @@ function SettingPage() {
         backgroundColor: "#21b6ae", 
         padding: "12px 30px",
         fontSize: "12px"}}
-        href="/setting"> Setting </Button>
+        href="/setting"> Settings </Button>
         <Button 
         variant="contained" 
         style={{ 

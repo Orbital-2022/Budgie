@@ -10,6 +10,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import DoughnutChart from "../components/Common/DoughnutChart.js";
 import IncomeCard from "../components/Common/IncomeCard.js";
+import ExpenseCard from "../components/Common/ExpenseCard";
 
 const useStyles = makeStyles((theme) => ({
   grid:{
@@ -97,7 +98,12 @@ function SummaryPage() {
             fontSize: "12px"}}
             href="/summary">
             Summary </Button>
-        <Button variant="contained" style={{ borderRadius: 20, backgroundColor: "#21b6ae", padding: "12px 30px",fontSize: "12px"}}> Setting </Button>
+            <Button variant="contained" 
+        style={{ borderRadius: 20, 
+        backgroundColor: "#21b6ae", 
+        padding: "12px 30px",
+        fontSize: "12px"}}
+        href="/setting"> Settings </Button>
         <Button 
         variant="contained" 
         style={{ 
@@ -106,19 +112,20 @@ function SummaryPage() {
           padding: "12px 30px",
           fontSize: "12px"}}
           onClick={handleLogout}> Logout </Button>
-        
           </div>
         </Grid>
-        <Grid item xs={10} container style={{textAlign: "center"}}>
-          <Grid item xs={12}>
-            <h1>
-              Your Summary
-            </h1>
-          </Grid>
+
+        <Grid item xs={10} container spacing={2} style={{textAlign: "center"}} >
+
+          <Grid item xs={6} ><IncomeCard /></Grid>
+          <Grid item xs={6} ><ExpenseCard /></Grid>
+
           <Grid item xs={3}>
           </Grid>
           <Grid item xs={6} >
-          <IncomeCard />
+          <h1>
+              Your Monthly Expense Chart
+            </h1>
           <DoughnutChart />
           </Grid>
           <Grid item xs={3}>

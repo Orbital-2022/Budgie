@@ -137,7 +137,7 @@ const Account = () => {
       backgroundColor: "#21b6ae", 
       padding: "12px 30px",
       fontSize: "12px"}}
-      href="/setting"> Setting </Button>
+      href="/setting"> Settings </Button>
       <Button 
       variant="contained" 
       style={{ 
@@ -189,7 +189,6 @@ const Account = () => {
          <Button type="button" className="submitbtnmedium" onClick={() => logout}>
           Sign Out
         </Button>
-        <Button onClick={()=>navigate("/mainpage")} className="submitbtnmedium">Main Page</Button>
         </Box>
         </SimplePaper>
         </Grid>

@@ -75,7 +75,7 @@ export default function CurrentBalance() {
   
     return (
         <Box>
-            <h2> Remaining Budget:{balance}</h2>
+            <h2> Remaining Budget: ${balance}</h2>
         </Box>
     )
   }
