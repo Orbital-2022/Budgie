@@ -14,12 +14,12 @@ class SetBudget extends Component {
             amount: this.props.amount,
             date: parseISO(moment().format("YYYY-MM-DD")),
             id: this.props.user.id,
+            dataSaved: false
         };
         console.log(this)
   
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleDateChange = this.handleDateChange.bind(this);
     }
     
     handleSubmit = async(event) => {
@@ -47,6 +47,13 @@ class SetBudget extends Component {
         }
             else 
             this.setState({data: budget});
+
+            this.setState({
+                amount: this.props.amount,
+                date: parseISO(moment().format("YYYY-MM-DD")),
+                id: this.props.user.id,
+                dataSaved: true
+            });
         }
       
       handleChange(e) {
@@ -54,12 +61,6 @@ class SetBudget extends Component {
           var change = {};
           change[e.target.name] = e.target.value;
           this.setState(change);
-      }
-  
-      handleDateChange(date) {
-          this.setState({
-              date: date
-          });
       }
   
       render(){
@@ -78,13 +79,12 @@ class SetBudget extends Component {
                         type="number"
                         name="amount"
                         onChange={this.handleChange.bind(this)}
-                        placeholder={this.state.amount}
-                        value={this.state.amount}
+                        value={this.state.amount ||""}
                     />
                 </div>
                     </div>
             {this.state.dataSaved ? (
-                <span className="bg-success success-msg"> Data saved successfully</span>
+                <span className="bg-success"> Data saved successfully!!!</span>
             ) : (
                     <span />
                 )}

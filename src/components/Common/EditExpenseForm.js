@@ -5,6 +5,7 @@ import $ from "jquery";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { parseISO } from 'date-fns'
+import "../../styles.css";
 
 
 class EditExpenseForm extends Component {
@@ -43,6 +44,15 @@ class EditExpenseForm extends Component {
           else 
           //this.setExpense(expense);
           this.setState({data: expense});
+
+          this.setState({
+            date:  parseISO(moment().format("YYYY-MM-DD")),
+            amount: "",
+            category: "Food",
+            remarks: "",
+            uid: this.props.user.id,
+            dataSaved: true
+        });
       }
     
     handleChange(e) {
@@ -135,7 +145,7 @@ class EditExpenseForm extends Component {
               </div>
           </div>
           {this.state.dataSaved ? (
-              <span className="bg-success success-msg"> Data saved successfully</span>
+              <span className="bg-success"> Data saved successfully</span>
           ) : (
                   <span />
               )}

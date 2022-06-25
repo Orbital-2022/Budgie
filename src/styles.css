@@ -127,3 +127,8 @@ form .inputField{
   margin-top: 10%;
   margin-bottom: 10%;
 }
+
+.bg-success{
+  font-size: large;
+  font-weight: bolder;
+}
