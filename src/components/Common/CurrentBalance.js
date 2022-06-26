@@ -82,7 +82,9 @@ export default function CurrentBalance() {
   
     return (
         <Box>
-            <h2> Remaining Budget: ${balance}</h2>
+            { balance > 0  ? <h2> Remaining Budget: ${balance}</h2>
+             : <h2 style={{color: "red"}}> Remaining Budget: ${balance} </h2>
+             }
         </Box>
     )
   }
