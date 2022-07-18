@@ -6,7 +6,7 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { parseISO } from 'date-fns'
 import "../../styles.css";
-
+import "../styles/form.css";
 
 class EditExpenseForm extends Component {
   constructor(props) {
@@ -33,30 +33,22 @@ class EditExpenseForm extends Component {
       .from('expenses')
       .insert({
           user_id: this.state.uid,
-          //expense_date:  this.state.date,
           expense_date: $(".date").val(),
           amount:  this.state.amount,
           category:  this.state.category,
           remark:  this.state.remarks,
       });
+
       console.log(this)
       if (error) console.log("error", error);
           else 
-          //this.setExpense(expense);
           this.setState({data: expense});
+          
+          $("#closePopup").click();
 
-          this.setState({
-            date:  parseISO(moment().format("YYYY-MM-DD")),
-            amount: "",
-            category: "Food",
-            remarks: "",
-            uid: this.props.user.id,
-            dataSaved: true
-        });
       }
     
     handleChange(e) {
-        // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
         var change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
@@ -70,6 +62,7 @@ class EditExpenseForm extends Component {
 
     render(){
     return (
+        <div>
       <form onSubmit={this.handleSubmit}>
           <div className="form-group row">
               <label className="TBC">
@@ -84,7 +77,6 @@ class EditExpenseForm extends Component {
                       name="date"
                       selected={this.state.date}
                       onChange={this.handleDateChange.bind(this)}
-                      //value={this.state.date}
                   />
               </div>
           </div>
@@ -99,6 +91,7 @@ class EditExpenseForm extends Component {
                       required
                       type="number"
                       name="amount"
+                      placeholder="Should be greater than 0"
                       onChange={this.handleChange.bind(this)}
                       value={this.state.amount}
                   />
@@ -112,6 +105,7 @@ class EditExpenseForm extends Component {
                   <select
                       className="form-control"
                       name="category"
+                      placeholder="Should not be empty"
                       value={this.state.category}
                       onChange={this.handleChange.bind(this)}
                   >
@@ -137,34 +131,27 @@ class EditExpenseForm extends Component {
                   <textarea
                       className="form-control"
                       type="text"
-                      required
                       name="remarks"
+                      //placeholder="Should not be empty"
                       onChange={this.handleChange.bind(this)}
                       value={this.state.remarks}
                   />
               </div>
           </div>
-          {this.state.dataSaved ? (
-              <span className="bg-success"> Data saved successfully</span>
-          ) : (
-                  <span />
-              )}
+         
           {this.state.amount > 0 && this.state.date && this.state.category ? (
               <button className="btn btn-primary float-right" type="submit">
                   save
               </button>
           ) : (
                   <div>
-                      <div >
-                          <div> Expense : should be greater than 0 </div>
-                          <div> Date : should be selected </div>
-                      </div>
                       <button className="btn btn-primary float-right" disabled type="submit">
                           save
                   </button>
                   </div>
               )}
       </form>
+</div>
   );
  
 }

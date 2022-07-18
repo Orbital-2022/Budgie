@@ -6,6 +6,7 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { parseISO } from 'date-fns'
 import "../../styles.css";
+import "../styles/form.css";
 
 class EditIncomeForm extends Component {
   constructor(props) {
@@ -33,7 +34,6 @@ class EditIncomeForm extends Component {
       .from('incomes')
       .insert({
           user_id: this.state.uid,
-          //income_date:  parseISO(this.state.date),
           income_date: $(".date").val(),
           amount:  this.state.amount,
           category:  this.state.category,
@@ -42,22 +42,12 @@ class EditIncomeForm extends Component {
       console.log(this)
       if (error) console.log("error", error);
           else 
-          //this.setExpense(expense);
           this.setState({data: income});
-           // reset form once saved
-
-        this.setState({
-            date:  parseISO(moment().format("YYYY-MM-DD")),
-            amount: "",
-            category: "Salary",
-            remarks: "",
-            uid: this.props.user.id,
-            dataSaved: true
-        });
+           
+          $("#closePopup2").click();
       }
     
     handleChange(e) {
-        // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
         var change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
@@ -100,6 +90,7 @@ class EditIncomeForm extends Component {
                       required
                       type="number"
                       name="amount"
+                      placeholder="Should be greater than 0"
                       onChange={this.handleChange.bind(this)}
                       value={this.state.amount}
                   />
@@ -132,7 +123,7 @@ class EditIncomeForm extends Component {
                   <textarea
                       className="form-control"
                       type="text"
-                      required
+                      //required
                       name="remarks"
                       onChange={this.handleChange.bind(this)}
                       value={this.state.remarks}
@@ -150,10 +141,6 @@ class EditIncomeForm extends Component {
               </button>
           ) : (
                   <div>
-                      <div >
-                          <div> Income : should be greater than 0 </div>
-                          <div> Date : should be selected </div>
-                      </div>
                       <button className="btn btn-primary float-right" disabled type="submit">
                           save
                   </button>
