@@ -22,8 +22,8 @@ function DoughnutChart(){
           .from('expenses')
           .select("*")
           .eq('user_id',user.id)
-          .lt('expense_date', end)
-          .gt('expense_date', start);
+          .lte('expense_date', end)
+          .gte('expense_date', start);
   
       if (error) 
       {console.log("error", error);

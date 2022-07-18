@@ -8,7 +8,6 @@ import "../../styles.css";
 
 
 export default function IncomePopup (props) {
-    //const [buttonPopup, setButtonPopup] = useState(false); 
     return (
 
                <Popup className= "simplepopup" trigger={<Button className='add'>Add Income</Button>} 
@@ -17,7 +16,7 @@ export default function IncomePopup (props) {
                 >
                 {close => (
                     <div>
-                <button className="close" position="right top" onClick={close}>
+                <button id="closePopup2" position="right top" onClick={close}>
                      &times;
                 </button>
                <EditIncomeForm

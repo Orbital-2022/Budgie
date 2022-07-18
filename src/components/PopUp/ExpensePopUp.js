@@ -7,7 +7,6 @@ import 'reactjs-popup/dist/index.css';
 
 
 export default function ExpensePopup (props) {
-    //const [buttonPopup, setButtonPopup] = useState(false); 
     return (
 
                <Popup className= "simplepopup" trigger={<Button className= "submitbtnmedium">Add Expense</Button>} 
@@ -16,7 +15,7 @@ export default function ExpensePopup (props) {
                 >
                 {close => (
                     <div>
-                <button className="close" position="right top" onClick={close}>
+                <button id="closePopup" position="right top" onClick={close}>
                      &times;
                 </button>
                <EditExpenseForm
@@ -28,14 +27,3 @@ export default function ExpensePopup (props) {
 
     )
 }
-//failed attempt to make it a popup
-/* <Button onClick={() => setButtonPopup(true)}>
-                    Add Expense
-                </Button>
-                
-                <EditExpensePopup 
-                trigger = {buttonPopup}
-                setTrigger = {setButtonPopup}
-                user= {props.user}
-                />
-                */
