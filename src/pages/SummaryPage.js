@@ -11,6 +11,7 @@ import { makeStyles } from '@mui/styles';
 import DoughnutChart from "../components/Common/DoughnutChart.js";
 import IncomeCard from "../components/Common/IncomeCard.js";
 import ExpenseCard from "../components/Common/ExpenseCard";
+import MonthlyComparison from "../components/Common/MonthlyComparison";
 
 const useStyles = makeStyles((theme) => ({
   grid:{
@@ -120,15 +121,17 @@ function SummaryPage() {
           <Grid item xs={6} ><IncomeCard /></Grid>
           <Grid item xs={6} ><ExpenseCard /></Grid>
 
-          <Grid item xs={3}>
-          </Grid>
           <Grid item xs={6} >
           <h1>
               Your Monthly Expense Chart
             </h1>
           <DoughnutChart />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6}>
+          <h1>
+              Monthly Expense Comparison
+            </h1>
+            <MonthlyComparison />
           </Grid>
         </Grid>
      </Grid>
