@@ -12,6 +12,7 @@ import {
     IconButton
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditRecordsPopup from "../PopUp/EditRecordsPopup";
 import EditIcon from '@mui/icons-material/Edit';
 
 
@@ -24,8 +25,9 @@ async function deleteExpenseRecords(id){
   .match({ id: id });
 
   if (error) console.log("error", error);
-
 }
+
+
 
 export default function RecordsTable(){
     const [data, setData] = useState([]);
@@ -84,12 +86,10 @@ export default function RecordsTable(){
                 <TableCell>{data.amount}</TableCell>
                 <TableCell>{data.remark}</TableCell>
                 <TableCell> 
-                <IconButton>
-                    <EditIcon />
-                    
-                  </IconButton>
-                  <IconButton>
-                    
+    
+               
+                 
+                 <IconButton> 
                     <DeleteIcon onClick={()=> deleteExpenseRecords(data.id)} />
                   </IconButton>
                  

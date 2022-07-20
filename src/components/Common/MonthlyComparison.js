@@ -4,6 +4,7 @@ import Chart from 'chart.js/auto';
 import { supabase } from "../../config/supabaseClient"; 
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { Line } from "react-chartjs-2";
+import { GoTrueApi } from "@supabase/supabase-js";
 //import { Summarize } from "@mui/icons-material";
 
 function MonthlyComparison() {
@@ -89,16 +90,40 @@ function MonthlyComparison() {
         fill: false,
         borderColor: "#742774"
       }
-    ]
+    ],
+
   };
+  const options = {
+    responsive: true,
+    aspectRatio: 1,
+
+    scales: {
+      x: {
+        grid: {
+          color: 'rgba(255,255,255)',
+          borderColor: 'white',
+          lineWidth: 3,
+        }
+      },
+      y: {
+        grid: {
+          color: 'rgba(255,255,255)',
+          borderColor: 'white',
+          lineWidth: 3
+        }
+      }
+    }
+  };
+      return (
+        <div>
+          <Line options={options} data={data} />
+      </div>
+      )
+}
+
+
   
 
-    return (
-      <div>
-        <Line data={data} />
-    </div>
-    )
-}
 
 function FetchData(end,start) {
   const [data, setData] = useState([]);
