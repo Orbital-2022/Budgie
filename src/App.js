@@ -6,6 +6,7 @@ import MainPage from "./pages/MainPage";
 import ProfilePage from "./pages/ProfilePage";
 import SummaryPage from "./pages/SummaryPage";
 import SettingPage from "./pages/SettingPage";
+import IncomePage from "./pages/IncomePage"
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/mainpage" element={<MainPage />} />
+          <Route path="/incomepage" element={<IncomePage />} />
           <Route path= "/profile" element ={<ProfilePage/>}/>
           <Route path= "/summary" element ={<SummaryPage/>}/> 
           <Route path= "/setting" element ={<SettingPage/>}/> 
