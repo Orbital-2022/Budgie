@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import {
   Button,
   Grid,
+  ToggleButton,
+  ToggleButtonGroup
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import DoughnutChart from "../components/Common/DoughnutChart.js";
@@ -30,6 +32,11 @@ function SummaryPage() {
     
     const [username, setUsername] = useState(null)
     const [avatar_url, setAvatarUrl] = useState(null)
+    const [alignment, setAlignment] = React.useState('expense');
+    
+    const handleChange = (event, newAlignment) => {
+      setAlignment(newAlignment);
+    };
 
     const navigate = useNavigate();
     
@@ -70,6 +77,7 @@ function SummaryPage() {
 
     return (
       <Grid container className={classes.grid}>
+
         <Grid item xs={2} className={classes.sidenav}>
           <div className={styles.layout} elevation={0}>
             <img src={url} alt="profile" className={styles.avatar}></img>
@@ -121,20 +129,51 @@ function SummaryPage() {
           <Grid item xs={6} ><IncomeCard /></Grid>
           <Grid item xs={6} ><ExpenseCard /></Grid>
 
-          <Grid item xs={6} >
+          <Grid item xs={1} ></Grid>
+
+          <Grid item xs={5} >
           <h1>
               Your Monthly Expense Chart
             </h1>
           <DoughnutChart />
           </Grid>
-          <Grid item xs={6}>
-          <h1>
+
+          <Grid item xs = {6} container >
+           <Grid item xs={1} ></Grid>
+            <Grid item xs={10}>
+            <h1>
               Monthly Expense Comparison
             </h1>
             <MonthlyComparison />
+            </Grid>
+            <Grid item xs={1} ></Grid>
+            <Grid item xs={12} ></Grid>
+            <Grid item xs={12} ></Grid>
+            <Grid item xs={12} ></Grid>
+            <Grid item xs={12} ></Grid>
+
+            <Grid item xs={5}></Grid>
+            <Grid item xs={6}>
+            <ToggleButtonGroup
+              color="primary"
+              size="large"
+              value={alignment}
+              exclusive
+              onChange={handleChange}
+            >
+              <ToggleButton value="Income" >View Income</ToggleButton>
+              <ToggleButton value="Expense">View Expense</ToggleButton>
+               </ToggleButtonGroup>
+            </Grid>
+            <Grid item xs={1}></Grid>
+
+          
+
+            
           </Grid>
-        </Grid>
-     </Grid>
+          
+         </Grid> 
+      </Grid>    
     )
 }
 
