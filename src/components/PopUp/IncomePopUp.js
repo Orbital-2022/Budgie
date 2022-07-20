@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import React from 'react';
-import EditIncomeForm from "../Common/EditIncomeForm";
+import EditIncomeForm from "../Income/EditIncomeForm";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import "../../styles.css";

@@ -4,21 +4,16 @@ import styles from "./MainPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
-  ToggleButtonGroup,
-  ToggleButton,
   Button,
   Grid,
+  ToggleButton,
+  ToggleButtonGroup
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
-//import  ExpenseCard  from "../components/Common/ExpenseCard";
-import IncomeBalance from "../components/Income/IncomeBalance";
-import IncomeTable from "../components/Income/IncomeTable";
-import ExpensePopUp from "../components/PopUp/ExpensePopUp";
-import IncomePopUp from "../components/PopUp/IncomePopUp";
-import AddIcon from '@mui/icons-material/Add';
-import MonthlyIncomeCard from "../components/Income/MonthlyIncomeCard";
-//import { createTheme,ThemeProvider } from '@mui/material/styles';
-
+import IncomeDoughnut from "../components/Income/IncomeDoughnut";
+import IncomeCard from "../components/Income/IncomeCard.js";
+import ExpenseCard from "../components/Common/ExpenseCard";
+import IncomeComparison from "../components/Income/IncomeComparison";
 
 const useStyles = makeStyles((theme) => ({
   grid:{
@@ -33,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function MainPage({session}) {
+function IncomeSummary() {
     
     const [username, setUsername] = useState(null)
     const [avatar_url, setAvatarUrl] = useState(null)
@@ -44,6 +39,7 @@ function MainPage({session}) {
     };
 
     const navigate = useNavigate();
+    
     async function handleLogout() {
         await supabase.auth.signOut();
           navigate("/");
@@ -51,7 +47,7 @@ function MainPage({session}) {
   
     useEffect(() => {
       getProfile()
-    }, [session])
+    }, [])
   
     const getProfile = async () => {
       try {
@@ -80,8 +76,8 @@ function MainPage({session}) {
     const classes = useStyles();
 
     return (
-      
       <Grid container className={classes.grid}>
+
         <Grid item xs={2} className={classes.sidenav}>
           <div className={styles.layout} elevation={0}>
             <img src={url} alt="profile" className={styles.avatar}></img>
@@ -109,12 +105,14 @@ function MainPage({session}) {
             backgroundColor: "#21b6ae", 
             padding: "12px 30px", 
             fontSize: "12px"}}
-            href="/summary"> Summary </Button>
-        <Button variant="contained" 
-        style={{ borderRadius: 20,
-         backgroundColor: "#21b6ae", 
-         padding: "12px 30px",
-         fontSize: "12px"}}href="/setting"> Settings </Button>
+            href="/summary">
+            Summary </Button>
+            <Button variant="contained" 
+        style={{ borderRadius: 20, 
+        backgroundColor: "#21b6ae", 
+        padding: "12px 30px",
+        fontSize: "12px"}}
+        href="/setting"> Settings </Button>
         <Button 
         variant="contained" 
         style={{ 
@@ -123,27 +121,39 @@ function MainPage({session}) {
           padding: "12px 30px",
           fontSize: "12px"}}
           onClick={handleLogout}> Logout </Button>
-        
           </div>
         </Grid>
-        
-          <Grid item xs={10} container spacing={2}>
-            <Grid item xs={12}>
-            </Grid>
-            <Grid item xs={6} >
-            <IncomeBalance />
-            </Grid>
-            <Grid item xs={6} >
-            <MonthlyIncomeCard />
-            </Grid>
-            
-            <Grid item xs={12}>
-            <IncomeTable />
-            </Grid>
 
-            <Grid item xs={1}> </Grid>
+        <Grid item xs={10} container spacing={2} style={{textAlign: "center"}} >
 
-            <Grid item xs={3}>
+          <Grid item xs={6} ><IncomeCard /></Grid>
+          <Grid item xs={6} ><ExpenseCard /></Grid>
+
+          <Grid item xs={1} ></Grid>
+
+          <Grid item xs={5} >
+          <h1>
+              Your Monthly Income Chart
+            </h1>
+          <IncomeDoughnut />
+          </Grid>
+
+          <Grid item xs = {6} container >
+           <Grid item xs={1} ></Grid>
+            <Grid item xs={10}>
+            <h1>
+              Monthly Income Comparison
+            </h1>
+            <IncomeComparison />
+            </Grid>
+            <Grid item xs={1} ></Grid>
+            <Grid item xs={12} ></Grid>
+            <Grid item xs={12} ></Grid>
+            <Grid item xs={12} ></Grid>
+            <Grid item xs={12} ></Grid>
+
+            <Grid item xs={5}></Grid>
+            <Grid item xs={6}>
             <ToggleButtonGroup
               color="primary"
               size="large"
@@ -151,39 +161,17 @@ function MainPage({session}) {
               exclusive
               onChange={handleChange}
             >
-            <ToggleButton value="Income" href="/incomepage">View Income</ToggleButton>
-            <ToggleButton value="Expense" href="/mainpage">View Expense</ToggleButton>
-            </ToggleButtonGroup>
+              <ToggleButton value="Income"  href="/incomesummary">View Income</ToggleButton>
+              <ToggleButton value="Expense"  href="/summary">View Expense</ToggleButton>
+               </ToggleButtonGroup>
             </Grid>
+            <Grid item xs={1}></Grid>
 
-            <Grid item xs={3}> </Grid>
-
-            <Grid item xs={1}>
-              <Button variant="contained" 
-              style={{ borderRadius: 20, 
-              backgroundColor: "#21b6ae", 
-              padding: "12px 30px", 
-              fontSize: "12px"}} 
-              endIcon={<AddIcon />}>
-              <ExpensePopUp user = {supabase.auth.user()}/>
-              </Button>
-            </Grid>
-            <Grid item xs={1}>
-
-            </Grid>
-            <Grid item xs={1}>
-              <Button variant="contained" 
-              style={{ borderRadius: 20, 
-              backgroundColor: "#21b6ae", 
-              padding: "12px 30px", 
-              fontSize: "12px"}} 
-              endIcon={<AddIcon />}>
-              <IncomePopUp user = {supabase.auth.user()}/>
-              </Button>
-            </Grid>
           </Grid>
-      </Grid>
-      
+          
+         </Grid> 
+      </Grid>    
     )
 }
-export default MainPage;
+
+export default IncomeSummary;

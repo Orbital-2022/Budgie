@@ -132,7 +132,7 @@ class EditExpenseForm extends Component {
                       className="form-control"
                       type="text"
                       name="remarks"
-                      //placeholder="Should not be empty"
+                      placeholder="Optional"
                       onChange={this.handleChange.bind(this)}
                       value={this.state.remarks}
                   />

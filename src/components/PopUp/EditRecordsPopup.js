@@ -1,27 +1,30 @@
-import { Button } from '@mui/material';
+//import { Button } from '@mui/material';
 import React from 'react';
-import EditIncomeForm from "../Common/EditIncomeForm";
+import EditRecordsForm from "../Common/EditRecordsForm";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import "../../styles.css";
+import EditIcon from '@mui/icons-material/Edit';
+import {
+    IconButton
+} from '@mui/material';
 
-
-
-export default function IncomePopup (props) {
+export default function EditPopup (props) {
     return (
 
-               <Popup className= "simplepopup" trigger={<Button className='add'>Add Income</Button>} 
+               <Popup className= "simplepopup"
+                trigger={<IconButton> <EditIcon /></IconButton>} 
                 position="right center"
                 modal
                 >
                 {close => (
                     <div>
-                <button id="closePopup2" position="right top" onClick={close}>
+                <button id="closePopup3" position="right top" onClick={close}>
                      &times;
                 </button>
-               <EditIncomeForm
+               <EditRecordsForm
                     user = {props.user}
-                    id = {props.id}
+                    rid = {props.rid}
                 />
                 </div>
                 )}

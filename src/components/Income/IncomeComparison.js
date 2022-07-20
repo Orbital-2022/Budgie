@@ -4,10 +4,9 @@ import Chart from 'chart.js/auto';
 import { supabase } from "../../config/supabaseClient"; 
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { Line } from "react-chartjs-2";
-//import { GoTrueApi } from "@supabase/supabase-js";
 //import { Summarize } from "@mui/icons-material";
 
-function MonthlyComparison() {
+function IncomeComparison() {
 
   const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
@@ -85,7 +84,7 @@ function MonthlyComparison() {
     labels: [month1,month2, month3, month4, month5, month6],
     datasets: [
       {
-        label: "Monthly expenses",
+        label: "Monthly Incomes",
         data: [sum1, sum2, sum3, sum4, sum5, sum6],
         fill: false,
         borderColor: "#742774"
@@ -132,12 +131,12 @@ function FetchData(end,start) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { fetch().catch(console.error);}, []);
   const fetch = async () => {
-      let { data: expense, error } = await supabase
-          .from('expenses')
+      let { data: income, error } = await supabase
+          .from('incomes')
           .select("*")
           .eq('user_id',user.id)
-          .lt('expense_date', end)
-          .gt('expense_date', start);
+          .lt('income_date', end)
+          .gt('income_date', start);
   
       if (error) 
       {console.log("error", error);
@@ -145,7 +144,7 @@ function FetchData(end,start) {
     }
       else {
         console.log(start);
-        setData(expense);
+        setData(income);
       }
     };
 
@@ -160,4 +159,4 @@ function FetchData(end,start) {
 
 
 
-export default MonthlyComparison;
+export default IncomeComparison;

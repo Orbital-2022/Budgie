@@ -8,18 +8,18 @@ import { parseISO } from 'date-fns'
 import "../../styles.css";
 import "../styles/form.css";
 
-
-class EditRecordsTable extends Component {
+class EditIncomeForm extends Component {
   constructor(props) {
       super(props);
 
       this.state = {
+          //date:"",
           date:  parseISO(moment().format("YYYY-MM-DD")),
           amount: "",
-          category: "Food",
+          category: "Salary",
           remarks: "",
           uid: this.props.user.id,
-          id: this.props.id,
+          dataSaved: false
       };
       console.log(this)
 
@@ -30,22 +30,21 @@ class EditRecordsTable extends Component {
   
   handleSubmit = async(event) => {
     event.preventDefault();
-      let { data: expense, error } = await supabase
-      .from('expenses')
-      .upsert({
-          expense_date: $(".date").val(),
+      let { data: income, error } = await supabase
+      .from('incomes')
+      .insert({
+          user_id: this.state.uid,
+          income_date: $(".date").val(),
           amount:  this.state.amount,
           category:  this.state.category,
           remark:  this.state.remarks,
       });
-
       console.log(this)
       if (error) console.log("error", error);
           else 
-          this.setState({data: expense});
-          
-          $("#closePopup").click();
-
+          this.setState({data: income});
+           
+          $("#closePopup2").click();
       }
     
     handleChange(e) {
@@ -60,9 +59,8 @@ class EditRecordsTable extends Component {
         });
     }
 
-    render() {
+    render(){
     return (
-        <div>
       <form onSubmit={this.handleSubmit}>
           <div className="form-group row">
               <label className="TBC">
@@ -77,12 +75,13 @@ class EditRecordsTable extends Component {
                       name="date"
                       selected={this.state.date}
                       onChange={this.handleDateChange.bind(this)}
+                      //value={this.state.date}
                   />
               </div>
           </div>
           <div className="form-group row">
               <label className="TBC">
-                  <span>Expense</span>
+                  <span>Income</span>
               </label>
               <div className="TBC">
                   <input
@@ -99,26 +98,19 @@ class EditRecordsTable extends Component {
           </div>
           <div className="form-group row">
               <label className="col-sm-2 col-xs-6 col-form-label">
-                  <span>category</span>
+                  <span>Category</span>
               </label>
               <div className="col-sm-10 col-xs-6">
                   <select
                       className="form-control"
                       name="category"
-                      placeholder="Should not be empty"
                       value={this.state.category}
                       onChange={this.handleChange.bind(this)}
                   >
-                      <option value="Food"> Food </option>
-                      <option value="Entertainment">Entertainment</option>
-                      <option value="Clothing">Clothing</option>
-                      <option value="Healthcare">Healthcare</option>
-                      <option value="Travel">Travel</option>
-                      <option value="Shopping">Shopping</option>
-                      <option value="Personal Care">Personal Care</option>
+                      <option value="Salary"> Salary</option>
+                      <option value="Allowance">Allowance</option>
+                      <option value="Scholarship">Scholarship</option>
                       <option value="Investment">Investment</option>
-                      <option value="Gifts & Donations">Gifts & Donations</option>
-                      <option value="Utilities"> Utilities</option>
                       <option value="Others">Others</option>
                   </select>
               </div>
@@ -131,14 +123,15 @@ class EditRecordsTable extends Component {
                   <textarea
                       className="form-control"
                       type="text"
+                      //required
                       name="remarks"
-                      //placeholder="Should not be empty"
+                      placeholder="Optional"
                       onChange={this.handleChange.bind(this)}
                       value={this.state.remarks}
                   />
               </div>
           </div>
-         
+          
           {this.state.amount > 0 && this.state.date && this.state.category ? (
               <button className="btn btn-primary float-right" type="submit">
                   save
@@ -151,11 +144,10 @@ class EditRecordsTable extends Component {
                   </div>
               )}
       </form>
-</div>
   );
  
 }
 }
 
 
-export default EditRecordsTable;
+export default EditIncomeForm;
