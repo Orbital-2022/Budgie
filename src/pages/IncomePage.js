@@ -11,12 +11,12 @@ import {
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 //import  ExpenseCard  from "../components/Common/ExpenseCard";
-import CurrentBalance from "../components/Common/CurrentBalance";
-import RecordsTable from "../components/Common/RecordsTable";
+import IncomeBalance from "../components/Common/IncomeBalance";
+import IncomeTable from "../components/Common/IncomeTable";
 import ExpensePopUp from "../components/PopUp/ExpensePopUp";
 import IncomePopUp from "../components/PopUp/IncomePopUp";
 import AddIcon from '@mui/icons-material/Add';
-import MonthlyExpenseCard from "../components/Common/MonthlyExpenseCard";
+import MonthlyIncomeCard from "../components/Common/MonthlyIncomeCard";
 //import { createTheme,ThemeProvider } from '@mui/material/styles';
 
 
@@ -42,7 +42,6 @@ function MainPage({session}) {
     const handleChange = (event, newAlignment) => {
       setAlignment(newAlignment);
     };
-  
 
     const navigate = useNavigate();
     async function handleLogout() {
@@ -132,16 +131,16 @@ function MainPage({session}) {
             <Grid item xs={12}>
             </Grid>
             <Grid item xs={6} >
-            <CurrentBalance />
+            <IncomeBalance />
             </Grid>
             <Grid item xs={6} >
-            <MonthlyExpenseCard />
+            <MonthlyIncomeCard />
             </Grid>
             
             <Grid item xs={12}>
-            <RecordsTable />
+            <IncomeTable />
             </Grid>
-            
+
             <Grid item xs={1}> </Grid>
 
             <Grid item xs={3}>
