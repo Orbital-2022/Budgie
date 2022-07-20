@@ -12,8 +12,8 @@ import {
     IconButton
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditRecordsPopup from "../PopUp/EditRecordsPopup";
-import EditIcon from '@mui/icons-material/Edit';
+//import EditIcon from '@mui/icons-material/Edit';
+import EditPopup from  "../PopUp/EditRecordsPopup"
 
 
 async function deleteExpenseRecords(id){
@@ -25,9 +25,8 @@ async function deleteExpenseRecords(id){
   .match({ id: id });
 
   if (error) console.log("error", error);
+
 }
-
-
 
 export default function RecordsTable(){
     const [data, setData] = useState([]);
@@ -86,10 +85,14 @@ export default function RecordsTable(){
                 <TableCell>{data.amount}</TableCell>
                 <TableCell>{data.remark}</TableCell>
                 <TableCell> 
-    
-               
-                 
-                 <IconButton> 
+
+                    <EditPopup 
+                    user = {supabase.auth.user()}
+                    rid = {data.id}
+                    />
+                    
+                  <IconButton>
+                    
                     <DeleteIcon onClick={()=> deleteExpenseRecords(data.id)} />
                   </IconButton>
                  

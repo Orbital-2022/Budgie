@@ -8,11 +8,10 @@ import {
     TableRow,
     TableCell,
     Paper,
-    //Button,
     IconButton
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import EditIncomeRow from "../PopUp/EditIncomePopup"
 
 
 async function deleteIncomeRecords(id){
@@ -84,10 +83,11 @@ export default function IncomeTable(){
                 <TableCell>{data.amount}</TableCell>
                 <TableCell>{data.remark}</TableCell>
                 <TableCell> 
-                <IconButton>
-                    <EditIcon />
-                    
-                  </IconButton>
+                
+                <EditIncomeRow 
+                   user = {supabase.auth.user()}
+                   rid = {data.id}
+                />
                   <IconButton>
                     
                     <DeleteIcon onClick={()=> deleteIncomeRecords(data.id)} />

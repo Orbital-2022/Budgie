@@ -6,7 +6,8 @@ import MainPage from "./pages/MainPage";
 import ProfilePage from "./pages/ProfilePage";
 import SummaryPage from "./pages/SummaryPage";
 import SettingPage from "./pages/SettingPage";
-import IncomePage from "./pages/IncomePage"
+import IncomePage from "./pages/IncomePage";
+import IncomeSummary from "./pages/IncomeSummary";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/incomepage" element={<IncomePage />} />
           <Route path= "/profile" element ={<ProfilePage/>}/>
           <Route path= "/summary" element ={<SummaryPage/>}/> 
+          <Route path= "/incomesummary" element ={<IncomeSummary/>}/> 
           <Route path= "/setting" element ={<SettingPage/>}/> 
         </Routes>
       </Router>

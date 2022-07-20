@@ -1,6 +1,6 @@
 //import { Button } from '@mui/material';
 import React from 'react';
-import EditRecordsForm from "../Common/EditRecordsForm";
+import EditIncome from "../Income/IncomeEditForm";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import "../../styles.css";
@@ -9,7 +9,7 @@ import {
     IconButton
 } from '@mui/material';
 
-export default function EditPopup (props) {
+export default function EditIncomeRow (props) {
     return (
 
                <Popup className= "simplepopup"
@@ -19,10 +19,10 @@ export default function EditPopup (props) {
                 >
                 {close => (
                     <div>
-                <button id="closePopup3" position="right top" onClick={close}>
+                <button id="closePopup4" position="right top" onClick={close}>
                      &times;
                 </button>
-               <EditRecordsForm
+               <EditIncome
                     user = {props.user}
                     rid = {props.rid}
                 />

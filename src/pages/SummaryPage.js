@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import DoughnutChart from "../components/Common/DoughnutChart.js";
-import IncomeCard from "../components/Common/IncomeCard.js";
+import IncomeCard from "../components/Income/IncomeCard.js";
 import ExpenseCard from "../components/Common/ExpenseCard";
 import MonthlyComparison from "../components/Common/MonthlyComparison";
 
@@ -161,8 +161,8 @@ function SummaryPage() {
               exclusive
               onChange={handleChange}
             >
-              <ToggleButton value="Income" >View Income</ToggleButton>
-              <ToggleButton value="Expense">View Expense</ToggleButton>
+              <ToggleButton value="Income" href="/incomesummary">View Income</ToggleButton>
+              <ToggleButton value="Expense" href="/summary">View Expense</ToggleButton>
                </ToggleButtonGroup>
             </Grid>
             <Grid item xs={1}></Grid>
