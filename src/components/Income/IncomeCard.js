@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import { supabase } from "../../config/supabaseClient";
 import Box from "../Box/Box";
-
+import to2dp from "../utils/round";
 
 export default function IncomeCard() {
     const [data, setData] = useState([]);
@@ -27,7 +27,7 @@ export default function IncomeCard() {
     }
     return (
         <Box>
-            <h2>Total income: ${sum}</h2>
+            <h2>Total income: ${to2dp(sum)}</h2>
         </Box>
     )
   }

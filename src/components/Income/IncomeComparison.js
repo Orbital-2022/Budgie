@@ -4,7 +4,7 @@ import Chart from 'chart.js/auto';
 import { supabase } from "../../config/supabaseClient"; 
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { Line } from "react-chartjs-2";
-//import { Summarize } from "@mui/icons-material";
+
 
 function IncomeComparison() {
 

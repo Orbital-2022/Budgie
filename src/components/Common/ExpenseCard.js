@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import { supabase } from "../../config/supabaseClient";
 import Box from "../Box/Box";
+import sum from "../utils/sum";
 
 
 export default function ExpenseCard() {
@@ -34,16 +35,17 @@ export default function ExpenseCard() {
     };
 
 
-    let sum = 0;
+    /*let sum = 0;
   
     for (let index = 0; index < data.length; index++) {
     sum += data[index].amount;
     }
+    */
   
     return (
         <Box>
-            <h2>Total expense: ${sum}</h2>
+            <h2>Total expense: ${sum(data)}</h2>
         </Box>
-    )
+    ) 
   }
   

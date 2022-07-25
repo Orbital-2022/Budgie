@@ -4,7 +4,8 @@ import $ from "jquery";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { parseISO } from 'date-fns';
-
+import to2dp from "../utils/round";
+ 
 const user = supabase.auth.user();
 class SetBudget extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class SetBudget extends Component {
         .insert({
             id: this.state.id,
             joinedat: $(".date").val(),
-            amount:  this.state.amount,
+            amount:  to2dp(this.state.amount),
         });
         console.log(this)
         if (error) 
@@ -38,7 +39,7 @@ class SetBudget extends Component {
          .from('budget')
          .update({ 
             joinedat: $(".date").val(),
-            amount:  this.state.amount,
+            amount:  to2dp(this.state.amount),
          })
          .eq('this.state.id', user.id)
          this.setState({data: budget});

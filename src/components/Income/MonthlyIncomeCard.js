@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import { supabase } from "../../config/supabaseClient";
 import Box from "../Box/Box";
 import { format, startOfMonth, endOfMonth } from 'date-fns';
+import to2dp from "../utils/round";
 
 export default function MonthlyExpenseCard() {
     const [data, setData] = useState([]);
@@ -48,7 +49,7 @@ export default function MonthlyExpenseCard() {
   
     return (
         <Box>
-            <h2>You earned ${sum} this month!</h2>
+            <h2>You earned ${to2dp(sum)} this month!</h2>
         </Box>
     )
   }
