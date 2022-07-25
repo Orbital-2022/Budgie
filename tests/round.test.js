@@ -1,7 +1,7 @@
 import to2dp from "../src/components/utils/round";
 
 test("input 4dp", async () => {
-    var input = 3.3460;
+    var input = 3.3462;
     const result = to2dp(input);
     expect(result).toBe(3.34);
 });
@@ -34,6 +34,12 @@ test("input big integer", async () => {
     var input = 35123;
     const result = to2dp(input);
     expect(result).toBe(35123);
+});
+
+test("input big number with 4dp", async () => {
+    var input = 35123.1234;
+    const result = to2dp(input);
+    expect(result).toBe(35123.12);
 });
 
 test("input zero", async () => {
