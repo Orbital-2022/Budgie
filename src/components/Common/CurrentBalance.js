@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 import { supabase } from "../../config/supabaseClient";
 import Box from "../Box/Box";
 import { format, startOfMonth, endOfMonth } from 'date-fns';
-
+import to2dp from "../utils/round";
 
 export default function CurrentBalance() {
     const [data, setData] = useState([]);
@@ -82,8 +82,8 @@ export default function CurrentBalance() {
   
     return (
         <Box>
-            { balance > 0  ? <h2> Remaining Budget: ${balance}</h2>
-             : <h2 style={{color: "red"}}> Remaining Budget: ${balance} </h2>
+            { balance > 0  ? <h2> Remaining Budget: ${to2dp(balance)}</h2>
+             : <h2 style={{color: "red"}}> Remaining Budget: ${to2dp(balance)} </h2>
              }
         </Box>
     )

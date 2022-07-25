@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { parseISO } from 'date-fns'
 import "../../styles.css";
 import "../styles/form.css";
+import to2dp from "../utils/round";
 
 class EditExpenseForm extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class EditExpenseForm extends Component {
       .insert({
           user_id: this.state.uid,
           expense_date: $(".date").val(),
-          amount:  this.state.amount,
+          amount:  to2dp(this.state.amount),
           category:  this.state.category,
           remark:  this.state.remarks,
       });
@@ -91,7 +92,7 @@ class EditExpenseForm extends Component {
                       required
                       type="number"
                       name="amount"
-                      placeholder="Should be greater than 0"
+                      placeholder="Should be within 2 d.p."
                       onChange={this.handleChange.bind(this)}
                       value={this.state.amount}
                   />
