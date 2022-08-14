@@ -65,15 +65,12 @@ class EditRecordsTable extends Component {
     return (
         <div>
       <form onSubmit={this.handleSubmit}>
-          <div className="form-group row">
-              <label className="TBC">
+          <div>
+              <label>
                   <span>Date</span>
               </label>
-              <div className="TBC">
+              <div>
                   <DatePicker
-                      className={
-                          "form-control date " 
-                      }
                       dateFormat="yyyy-MM-dd"
                       name="date"
                       selected={this.state.date}
@@ -81,13 +78,12 @@ class EditRecordsTable extends Component {
                   />
               </div>
           </div>
-          <div className="form-group row">
-              <label className="TBC">
+          <div>
+              <label>
                   <span>Expense</span>
               </label>
-              <div className="TBC">
+              <div>
                   <input
-                      className="form-control"
                       autoFocus
                       required
                       type="number"
@@ -98,13 +94,12 @@ class EditRecordsTable extends Component {
                   />
               </div>
           </div>
-          <div className="form-group row">
-              <label className="col-sm-2 col-xs-6 col-form-label">
+          <div>
+              <label>
                   <span>category</span>
               </label>
-              <div className="col-sm-10 col-xs-6">
+              <div>
                   <select
-                      className="form-control"
                       name="category"
                       placeholder="Should not be empty"
                       value={this.state.category}
@@ -124,13 +119,12 @@ class EditRecordsTable extends Component {
                   </select>
               </div>
           </div>
-          <div className="form-group row">
-              <label className="TBC">
+          <div>
+              <label>
                   <span>Remarks</span>
               </label>
-              <div className="TBC">
+              <div>
                   <textarea
-                      className="form-control"
                       type="text"
                       name="remarks"
                       placeholder="Optional"
@@ -141,12 +135,12 @@ class EditRecordsTable extends Component {
           </div>
          
           {this.state.amount > 0 && this.state.date && this.state.category ? (
-              <button className="btn btn-primary float-right" type="submit">
+              <button type="submit">
                   save
               </button>
           ) : (
                   <div>
-                      <button className="btn btn-primary float-right" disabled type="submit">
+                      <button disabled type="submit">
                           save
                   </button>
                   </div>

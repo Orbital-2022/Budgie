@@ -17,7 +17,6 @@ import ExpensePopUp from "../components/PopUp/ExpensePopUp";
 import IncomePopUp from "../components/PopUp/IncomePopUp";
 import AddIcon from '@mui/icons-material/Add';
 import MonthlyIncomeCard from "../components/Income/MonthlyIncomeCard";
-//import { createTheme,ThemeProvider } from '@mui/material/styles';
 
 
 const useStyles = makeStyles((theme) => ({
