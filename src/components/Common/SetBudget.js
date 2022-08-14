@@ -58,7 +58,7 @@ class SetBudget extends Component {
         }
       
       handleChange(e) {
-          // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
+          // ES 6 dictionary syntax { [e.target.name] = e.target.value }
           var change = {};
           change[e.target.name] = e.target.value;
           this.setState(change);
@@ -68,13 +68,12 @@ class SetBudget extends Component {
       return (
         <form onSubmit={this.handleSubmit}>
 
-            <div className="form-group row">
-                <label className="TBC">
+            <div>
+                <label>
                     <span>Your Budget</span>
                 </label>
-                <div className="TBC">
+                <div>
                     <input
-                        className="form-control"
                         autoFocus
                         required
                         type="number"
@@ -90,7 +89,7 @@ class SetBudget extends Component {
                     <span />
                 )}
             {this.state.amount > 0 && this.state.date ? (
-                <button className="btn btn-primary float-right" type="submit">
+                <button type="submit">
                     save
                 </button>
             ) : (
@@ -98,7 +97,7 @@ class SetBudget extends Component {
                         <div >
                             <div> Budget : should be greater than 0 </div>
                         </div>
-                        <button className="btn btn-primary float-right" disabled type="submit">
+                        <button disabled type="submit">
                             save
                     </button>
                     </div>

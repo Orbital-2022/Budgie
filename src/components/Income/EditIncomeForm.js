@@ -14,7 +14,6 @@ class EditIncomeForm extends Component {
       super(props);
 
       this.state = {
-          //date:"",
           date:  parseISO(moment().format("YYYY-MM-DD")),
           amount: "",
           category: "Salary",
@@ -63,11 +62,11 @@ class EditIncomeForm extends Component {
     render(){
     return (
       <form onSubmit={this.handleSubmit}>
-          <div className="form-group row">
-              <label className="TBC">
+          <div>
+              <label>
                   <span>Date</span>
               </label>
-              <div className="TBC">
+              <div>
                   <DatePicker
                       className={
                           "form-control date " 
@@ -76,17 +75,15 @@ class EditIncomeForm extends Component {
                       name="date"
                       selected={this.state.date}
                       onChange={this.handleDateChange.bind(this)}
-                      //value={this.state.date}
                   />
               </div>
           </div>
-          <div className="form-group row">
-              <label className="TBC">
+          <div>
+              <label>
                   <span>Income</span>
               </label>
-              <div className="TBC">
+              <div>
                   <input
-                      className="form-control"
                       autoFocus
                       required
                       type="number"
@@ -97,13 +94,12 @@ class EditIncomeForm extends Component {
                   />
               </div>
           </div>
-          <div className="form-group row">
-              <label className="col-sm-2 col-xs-6 col-form-label">
+          <div>
+              <label>
                   <span>Category</span>
               </label>
-              <div className="col-sm-10 col-xs-6">
+              <div>
                   <select
-                      className="form-control"
                       name="category"
                       value={this.state.category}
                       onChange={this.handleChange.bind(this)}
@@ -116,13 +112,12 @@ class EditIncomeForm extends Component {
                   </select>
               </div>
           </div>
-          <div className="form-group row">
-              <label className="TBC">
+          <div>
+              <label>
                   <span>Remarks</span>
               </label>
-              <div className="TBC">
+              <div>
                   <textarea
-                      className="form-control"
                       type="text"
                       //required
                       name="remarks"
@@ -134,12 +129,12 @@ class EditIncomeForm extends Component {
           </div>
           
           {this.state.amount > 0 && this.state.date && this.state.category ? (
-              <button className="btn btn-primary float-right" type="submit">
+              <button type="submit">
                   save
               </button>
           ) : (
                   <div>
-                      <button className="btn btn-primary float-right" disabled type="submit">
+                      <button disabled type="submit">
                           save
                   </button>
                   </div>

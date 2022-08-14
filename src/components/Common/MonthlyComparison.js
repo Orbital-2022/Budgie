@@ -4,8 +4,6 @@ import Chart from 'chart.js/auto';
 import { supabase } from "../../config/supabaseClient"; 
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 import { Line } from "react-chartjs-2";
-//import { GoTrueApi } from "@supabase/supabase-js";
-//import { Summarize } from "@mui/icons-material";
 
 function MonthlyComparison() {
 
