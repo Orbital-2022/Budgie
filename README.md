@@ -12,19 +12,26 @@ Like many others in this world, we often wonder where our money went, when we lo
 ## Target Audience
 University students who have limited monthly allowance and wish to plan their expenses wisely
 
-## Problem Identified
-
-1. Many application or websites only provide basic daily spending tracking. Other features require purchasing.
-2. Extra ads appear in most free applications, which worsens user experience.
-3. Very few applications provides visualisation of expenses
-
-## Aim
-
-We hope to create a web-based application that can help one to set budgets for various categories, keep expenses on track and analyse personal finance in a convenient and clear way.
-
 ## Main features
 
 1. Set monthly budget
 2. Record daily expenses
 3. Monthly view of expense to help students visualise their monthly expenses
 
+## User Guide
+### Landing page
+You can sign in with your email address and login via the magic link sent to your email. 
+
+### Profile Page
+We intend to collect the email address of our users as well as a username. The user can also choose to upload their profile photo and their username in the Profile Page. 
+
+### HOME Page
+You can add new expenses by clicking the “ADD EXPENSE” button. A form will pop up for you to key in your expenses. Then the new entry would be reflected on the table behind. If you have no more expenses to record, you may close the popup form.
+You can also add your income in the same way as above via the “ADD INCOME” button. 
+The entries are displayed in a table in the home page. You can switch between expense table and income table by clicking on "VIEW EXPENSE" or "VIEW INCOME".
+
+### SETTING page
+“Set budget” function can be found at the SETTING page. You can update your budget there.
+
+### Exceed budget Alert
+If you have spent beyond your budget. The text in ‘Remaining Budget’ card will turn into red to alert you!
